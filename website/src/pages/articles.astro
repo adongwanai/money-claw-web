@@ -16,11 +16,16 @@ const mainArticles = sortedPosts.map(post => ({
 }));
 
 const topArticles = [
-  "本地构建：阿东同款矩阵组件清单，这6款Agent最受欢迎",
-  "进阶分享：5分钟打造多进程协作的龙虾军团",
-  "实战案例：多平台自动并发收割指令从0到1拆解",
-  "记忆系统：从 BM25 到向量库的持久化状态指南",
-  "无需折腾群控，看我如何用手机直接遥控全体后台单元"
+  "10分钟VPS快速部署：从零到运行完整指南",
+  "多Agent协作实战：8虾团队各司其职",
+  "零API成本：本地模型Ollama完全指南",
+  "供应链安全警示：341个恶意技能曝光",
+  "Token消耗优化：成本降低60%的秘密",
+  "四大平台全覆盖：微信/飞书/钉钉/QQ一键接入",
+  "龙虾记忆系统深度拆解：BM25到向量检索",
+  "三大AI Agent平台深度横评与选型指南",
+  "从聊天工具到自主代理：范式转移分析",
+  "提示词优化实战：让龙虾更懂你的业务"
 ];
 ---
 
@@ -122,7 +127,7 @@ const topArticles = [
             <span class="text-xl">🏷️</span> 热门标签
           </h3>
           <div class="flex flex-wrap gap-2">
-            {['部署教程 20', '节点架构 15', '私域组件化 12', '新手 10', '实战运营 9', '高级进阶 7', '记忆系统剖析 7', '飞书联动 7', 'API消耗优化 7', '全自动赚钱 7'].map(tag => {
+            {['部署教程 25', '安全审计 15', '多Agent协作 12', '新手入门 12', '视频教程 10', '本地模型 9', '飞书联动 8', 'Token优化 8', 'Prompt工程 7', '成本控制 7', '平台接入 6', '云部署 6', '架构解析 5', '进阶玩法 5', '赚钱案例 4'].map(tag => {
               const [name, count] = tag.split(' ');
               return (
                 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-[13px] px-3 py-1.5 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
@@ -130,6 +135,44 @@ const topArticles = [
                 </span>
               );
             })}
+          </div>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="bg-gradient-to-br from-[#ca3d2f] to-[#a33227] rounded-2xl p-6 text-white shadow-lg">
+          <h3 class="text-lg font-black mb-4 flex items-center gap-2">
+            <span class="text-xl">📊</span> 资源统计
+          </h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="text-center">
+              <div class="text-2xl font-black">370+</div>
+              <div class="text-white/70 text-sm">教程资源</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-black">1715+</div>
+              <div class="text-white/70 text-sm">社区技能</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-black">7</div>
+              <div class="text-white/70 text-sm">学习路径</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-black">31</div>
+              <div class="text-white/70 text-sm">技能分类</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security Alert -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">⚠️</span>
+            <div>
+              <h4 class="font-bold text-yellow-800 mb-1">安全提醒</h4>
+              <p class="text-sm text-yellow-700 leading-relaxed">
+                近期发现部分恶意技能存在供应链风险。安装第三方技能前请务必检查源码，优先使用官方或社区审核的技能。
+              </p>
+            </div>
           </div>
         </div>
 
