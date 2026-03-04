@@ -126,11 +126,11 @@ const topArticles = [
           <h3 class="text-lg font-black text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-100 pb-4">
             <span class="text-xl">🏷️</span> 热门标签
           </h3>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2" id="tagCloud">
             {['部署教程 25', '安全审计 15', '多Agent协作 12', '新手入门 12', '视频教程 10', '本地模型 9', '飞书联动 8', 'Token优化 8', 'Prompt工程 7', '成本控制 7', '平台接入 6', '云部署 6', '架构解析 5', '进阶玩法 5', '赚钱案例 4'].map(tag => {
               const [name, count] = tag.split(' ');
               return (
-                <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-[13px] px-3 py-1.5 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
+                <span class="tag-item inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-[13px] px-3 py-1.5 rounded-full hover:bg-gray-100 cursor-pointer transition-colors" data-tag={name.toLowerCase()}>
                   {name} <span class="text-gray-400 text-[11px] font-mono">{count}</span>
                 </span>
               );
@@ -219,10 +219,14 @@ const topArticles = [
       }
     }
 
-    // Search Input Event
+    // Debounced Search Input Event
+    let debounceTimer;
     searchInput.addEventListener('input', (e) => {
-      currentSearch = e.target.value.toLowerCase().trim();
-      filterArticles();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        currentSearch = e.target.value.toLowerCase().trim();
+        filterArticles();
+      }, 300);
     });
 
     // Category Filter Events
@@ -233,13 +237,32 @@ const topArticles = [
           b.classList.remove('bg-[#ca3d2f]', 'text-white');
           b.classList.add('bg-white', 'text-gray-600');
         });
-        
+
         // Active UI
         btn.classList.add('bg-[#ca3d2f]', 'text-white');
         btn.classList.remove('bg-white', 'text-gray-600');
 
         currentFilter = btn.getAttribute('data-filter');
         filterArticles();
+      });
+    });
+
+    // Tag Click Filter Events
+    document.querySelectorAll('.tag-item').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const tagName = tag.getAttribute('data-tag');
+
+        // Update search input to show what's being filtered
+        searchInput.value = tagName;
+
+        // Trigger filter
+        currentSearch = tagName;
+        filterArticles();
+
+        // Update URL for shareable link (optional)
+        const url = new URL(window.location.href);
+        url.searchParams.set('tag', tagName);
+        history.pushState(null, '', url.toString());
       });
     });
   });
