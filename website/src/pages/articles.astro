@@ -53,16 +53,17 @@ const topArticles = [
       <button class="filter-btn px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300 transition-colors" data-filter="运营">💡 矩阵运营</button>
     </div>
 
-    <!-- Full screen No Results State -->
-    <div id="noResults" class="hidden text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm w-full lg:w-[68%]">
-      <div class="text-4xl mb-4">🦞❓</div>
-      <h3 class="text-lg font-bold text-gray-900 mb-2">架构虾未能检索到相关内容</h3>
-      <p class="text-gray-500 text-sm">请尝试缩减搜索关键词或切换文章分类标签</p>
-    </div>
-
     <div class="flex flex-col lg:flex-row gap-8">
       <!-- Left Column: Article Feed -->
       <div class="w-full lg:w-[68%] space-y-6" id="articleContainer">
+        
+        <!-- Full screen No Results State -->
+        <div id="noResults" class="hidden text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm w-full">
+          <div class="text-4xl mb-4">🦞❓</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">架构虾未能检索到相关内容</h3>
+          <p class="text-gray-500 text-sm">请尝试缩减搜索关键词或切换文章分类标签</p>
+        </div>
+
         {mainArticles.map(article => (
           <div class="article-card bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all group" data-title={article.title.toLowerCase()} data-tags={article.tags.join(',').toLowerCase()}>
             <div class="flex items-center gap-3 text-xs font-mono text-gray-500 mb-4">
@@ -170,10 +171,8 @@ const topArticles = [
 
       if (visibleCount === 0) {
         noResults.style.display = 'block';
-        articleContainer.style.display = 'none';
       } else {
         noResults.style.display = 'none';
-        articleContainer.style.display = 'block';
       }
     }
 
