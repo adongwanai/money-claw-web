@@ -97,8 +97,8 @@ const allSkills = [
               <h4 class="font-bold text-gray-900 group-hover:text-[#ca3d2f] text-[15px] mb-1.5 leading-tight transition-colors">{skill.title}</h4>
               <div class="flex gap-1.5 flex-wrap">
                 {skill.tags.map(tag => (
-                  <span class={`text-[10px] px-1.5 py-0.5 rounded shadow-sm font-bold ${tag === '必装' ? 'bg-amber-50 text-amber-700 border border-amber-200' : (tag === '热门' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-green-50 text-green-700 border border-green-100')}`}>
-                    {tag === '必装' ? '⭐ ' : (tag === '热门' ? '🔥 ' : '')}{tag}
+                  <span class={`text-[10px] px-1.5 py-0.5 rounded shadow-sm font-bold ${getBadgeClass(tag)}`}>
+                    {getBadgePrefix(tag) + tag}
                   </span>
                 ))}
               </div>
