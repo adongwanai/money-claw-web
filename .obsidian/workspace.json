@@ -185,6 +185,7 @@
   },
   "active": "f6ffa8b25eb24dde",
   "lastOpenFiles": [
+    "website/src/components/GlobalSearch.astro",
     "tasks/todo.md",
     "tasks",
     "website/src/layouts/LightLayout.astro",
@@ -222,7 +223,6 @@
     "website/node_modules/jiti/README.md",
     "website/node_modules/tslib/SECURITY.md",
     "website/node_modules/tslib/README.md",
-    "website/node_modules/fsevents/README.md",
     "website/public/favicon.svg"
   ]
 }

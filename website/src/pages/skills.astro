@@ -36,6 +36,18 @@ const allSkills = [
   { id: "twitter-bot", category: "社媒", icon: "🐦", title: "Twitter / X", desc: "自动抓取热点发推、刷数据、防封号多账号矩阵。", tags: ["官方"] },
   { id: "xhs-bot", category: "社媒", icon: "📕", title: "小红书运营", desc: "自动截流、评论引流、养号矩阵。无极并发模式。", tags: ["官方", "热门"] }
 ];
+
+function getBadgeClass(tag: string) {
+  if (tag === '必装') return 'bg-amber-50 text-amber-700 border border-amber-200';
+  if (tag === '热门') return 'bg-red-50 text-red-600 border border-red-100';
+  return 'bg-green-50 text-green-700 border border-green-100';
+}
+
+function getBadgePrefix(tag: string) {
+  if (tag === '必装') return '⭐ ';
+  if (tag === '热门') return '🔥 ';
+  return '';
+}
 ---
 
 <LightLayout title="龙虾技能箱 | 赚钱日记">
@@ -65,7 +77,7 @@ const allSkills = [
                 {pack.specialBorder && <span class="text-yellow-500">⭐</span>} 适合: {pack.suitable}
               </span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </div>
