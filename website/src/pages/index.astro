@@ -1,0 +1,389 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CyberTown from '../components/CyberTown.astro';
+
+// 龙虾类型定义 (扩充日报虾、出海虾等全景变现架构)
+const lobsterTypes = [
+  { name: '写稿虾', skill: '自动写小红书', color: 'orange' },
+  { name: '收租虾', skill: '自动收会员费', color: 'green' },
+  { name: '带货虾', skill: '自动发带货帖', color: 'purple' },
+  { name: '剪辑虾', skill: '自动剪视频', color: 'blue' },
+  { name: '客服虾', skill: '自动回复客户', color: 'red' },
+  { name: '出海虾', skill: '代码构建应用', color: 'cyan' },
+  { name: '日报虾', skill: '全网资讯整理', color: 'yellow' },
+  { name: '闲鱼虾', skill: '自动捡漏赚差价', color: 'teal' }
+];
+
+const platforms = ['X (Twitter)', 'TikTok', 'YouTube', '小红书', '微信生态', '闲鱼'];
+const tasks = ['招聘客服闭环', '全自动私域运营', 'AI出海导航站', '短视频矩阵变现', '全自动线索挖掘', '跨境电商投流', '二手捡漏矩阵', '全球资讯速递'];
+const authors = ['阿东', 'X 赚钱博主', 'TikTok 带货达人', '独立开发者', '搞钱主理人'];
+
+// Produce 100 cases with lobster types
+const cases = Array.from({length: 100}).map((_, i) => ({
+   id: i + 1,
+   title: `全自动闭环赚钱案例 #${i + 1}`,
+   desc: `利用 ${platforms[i % platforms.length]} 平台流量，靠 OpenClaw Agent 完全接手 ${tasks[i % tasks.length]} 任务，从获客、执行到收款，100%自动化闭环。`,
+   author: i % 4 === 0 ? '阿东' : authors[i % authors.length],
+   price: `$${(Math.random()*500 + 100).toFixed(0)}/Day`,
+   dailyRevenue: `¥${(Math.random()*3000 + 500).toFixed(0)}`,
+   lobsterType: lobsterTypes[i % lobsterTypes.length],
+   status: ['跑通闭环', '稳定打款中', '高速裂变'][Math.floor(Math.random()*3)]
+}));
+
+// 龙虾战绩数据
+const achievements = [
+  {
+    icon: '💰',
+    title: '睡后收入，龙虾创造',
+    bigNumber: '凌晨3点，¥847 入账',
+    story: '写稿虾自动发了3篇小红书笔记，睡醒发现后台爆了。'
+  },
+  {
+    icon: '🦞',
+    title: '一只龙虾，N 种技能',
+    bigNumber: '一人成军 = 跑通全链路赚钱闭环',
+    story: '收租、写稿、带货、剪辑、写代码...它能不断进化，组成你的超级杠杆。'
+  },
+  {
+    icon: '⚡',
+    title: '你睡觉，它干活',
+    bigNumber: '连续工作 47天13小时',
+    story: '不休息、不抱怨、不要加班费。只按结果付费。'
+  },
+  {
+    icon: '📈',
+    title: '越养越能赚',
+    bigNumber: '月收入增长 +234%',
+    story: '每只龙虾都在学习，记得住你所有生意套路。'
+  }
+];
+---
+
+<Layout title="龙虾赚钱日记 - 养一群小龙虾，它们24小时帮你赚钱">
+  <!-- Hero Section - 数据驱动 -->
+  <section id="main-content" class="relative pt-20 pb-16 bg-black min-h-screen text-white overflow-hidden">
+     <div class="max-w-7xl mx-auto px-4 text-center z-10 relative pt-12">
+
+       <!-- 顶部标签 -->
+       <span class="inline-block py-1.5 px-4 border border-orange-500/50 text-orange-400 rounded-full text-xs font-bold tracking-widest mb-8 bg-orange-500/10">
+         🦞 龙虾赚钱日记
+       </span>
+
+       <!-- 核心数据大字 -->
+       <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-8">
+         <div class="text-center">
+           <span class="block text-sm text-gray-500 mb-1 tracking-wide">龙虾军团今日收入</span>
+           <span class="text-5xl md:text-7xl font-black text-yellow-400 tabular-nums" style="text-shadow: 0 0 30px rgba(250, 204, 21, 0.4);">
+             ¥2,847
+           </span>
+         </div>
+         <span class="hidden md:block text-4xl text-gray-700">/</span>
+         <div class="text-center">
+           <span class="block text-sm text-gray-500 mb-1 tracking-wide">累计赚钱</span>
+           <span class="text-5xl md:text-7xl font-black text-white tabular-nums">
+             ¥128,456
+           </span>
+         </div>
+       </div>
+
+       <!-- 核心口号 -->
+       <h1 class="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-tight">
+         养一群小龙虾，<br class="md:hidden"/>
+         <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500">
+           它们24小时帮你赚钱。
+         </span>
+       </h1>
+
+       <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+         赛博小镇里，每只龙虾都是你的员工。写稿、带货、收租、客服、造产品——全自动运转，你只管数钱。
+       </p>
+
+       <!-- 实时状态 -->
+       <div class="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-2.5 mb-12">
+         <span class="relative flex h-3 w-3">
+           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+           <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+         </span>
+         <span class="text-sm text-gray-300">
+           当前 <strong class="text-white">23只龙虾</strong> 在线打工中
+         </span>
+       </div>
+
+       <!-- 向下滚动提示 -->
+       <div class="animate-bounce text-gray-500">
+         <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+         </svg>
+         <span class="text-xs">向下滚动查看战绩</span>
+       </div>
+     </div>
+
+     <!-- 背景装饰 -->
+     <div class="absolute inset-0 overflow-hidden pointer-events-none">
+       <div class="absolute top-1/4 left-10 text-6xl opacity-10 animate-pulse">🦞</div>
+       <div class="absolute top-1/3 right-20 text-5xl opacity-10 animate-pulse" style="animation-delay: 0.5s;">💰</div>
+       <div class="absolute bottom-1/3 left-1/4 text-4xl opacity-10 animate-pulse" style="animation-delay: 1s;">💵</div>
+       <div class="absolute bottom-1/4 right-1/3 text-5xl opacity-10 animate-pulse" style="animation-delay: 1.5s;">🦞</div>
+     </div>
+  </section>
+
+  <!-- 创始人日志 & 产能看板 -->
+  <section class="py-24 bg-black relative border-y border-white/5" id="founder-diary">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- 左侧：主理人自白 -->
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            SYSTEM ARCHITECT
+          </div>
+          <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">
+            我是阿东，<br/>我的团队是 <span class="text-orange-400">15 行代码。</span>
+          </h2>
+          <div class="prose prose-invert prose-lg text-gray-400">
+            <p>曾经我也深陷在繁杂的代码和无尽的运营任务中，总觉得一个人干不完一支团队的活……直到我用 <strong class="text-white">Vibe Coding</strong> 和 <strong class="text-white">OpenClaw</strong> 打造了这群纯本地运行的 AI 员工（龙虾军团）。</p>
+            <p>这里不仅是我的个人实战记录，我还会全网同步收集 X (Twitter)、TikTok 等平台上的前沿 <strong class="text-white">实战赚钱案例</strong> （要求全部跑通可闭环）。未来我会把它们全都打包成普通人开箱即用的 <strong class="text-orange-400">Skills 技能包</strong> 售卖。</p>
+            <p>即使像发笔记、写代码、建站出海、转化客户这种需要脑力堆砌的活儿，它们都不喝咖啡、不休周末地为我处理。这套系统帮我释放了 99% 的执行时间，现在，我只做核心决策。</p>
+          </div>
+          <div class="pt-4 flex items-center gap-6">
+             <a href="https://adongwanai.github.io/" target="_blank" class="text-white font-bold hover:text-orange-400 transition-colors flex items-center gap-2">
+                了解更多关于阿东 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+             </a>
+          </div>
+        </div>
+
+        <!-- 右侧：龙虾产能数据极客看板 -->
+        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl rounded-2xl p-8 relative overflow-hidden group">
+          <!-- 装饰元素 -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+          
+          <div class="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
+             <div class="font-mono text-sm text-gray-400">LOBSTER_OUTPUT_METRICS.exe</div>
+             <div class="flex gap-2">
+               <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+               <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+               <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+             </div>
+          </div>
+
+          <div class="space-y-6 relative z-10">
+            <!-- 指标 1 -->
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <span class="text-sm text-gray-300 font-medium tracking-wide">代码构建与 AI 出海应用部署</span>
+                <span class="text-3xl font-black text-white font-mono"><span id="metric-coding">3420</span>+ <span class="text-sm text-gray-500">行/日</span></span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-1.5"><div class="bg-gradient-to-r from-orange-500 to-yellow-400 h-1.5 rounded-full" id="bar-coding" style="width: 85%"></div></div>
+              <p class="text-xs text-gray-500 mt-2">极客极速开发，相当于多个资深全栈的心血，0 Bug 稳定输出。</p>
+            </div>
+
+            <!-- 指标 2 -->
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <span class="text-sm text-gray-300 font-medium tracking-wide">自媒体矩阵：短视频与笔记产出</span>
+                <span class="text-3xl font-black text-white font-mono"><span id="metric-media">158</span>+ <span class="text-sm text-gray-500">条/日</span></span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-1.5"><div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-1.5 rounded-full" id="bar-media" style="width: 92%"></div></div>
+              <p class="text-xs text-gray-500 mt-2">7x24小时捕捉全网热点，自动网感分析、文案撰写与发布。</p>
+            </div>
+
+            <!-- 指标 3 -->
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <span class="text-sm text-gray-300 font-medium tracking-wide">人类老板介入工作时长</span>
+                <span class="text-3xl font-black text-green-400 font-mono"><span id="metric-human">30</span> <span class="text-sm text-gray-500">Min/Day</span></span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-1.5"><div class="bg-green-400 h-1.5 rounded-full shadow-[0_0_10px_rgba(74,222,128,0.5)]" id="bar-human" style="width: 5%"></div></div>
+              <p class="text-xs text-gray-500 mt-2">我只负责两件事：提供顶层 Vibe 创意构思、查看跑通的入账通知。</p>
+            </div>
+
+            <!-- 指标 4 -->
+            <div>
+              <div class="flex justify-between items-end mb-2">
+                <a href="https://www.xiaohongshu.com/discovery/item/69771bd900000000280239c3?source=webshare&xhsshare=pc_web&xsec_token=ABOXGXk9C9LRjdIG9P5mq7YkUWBOVB1v43Z95ucaiD_1M=&xsec_source=pc_share" target="_blank" class="text-sm text-gray-300 font-medium tracking-wide flex items-center gap-1 hover:text-red-400 transition-colors group">
+                  小红书爆款制造机
+                  <span class="text-xs opacity-50 group-hover:opacity-100 transition-opacity">↗ 外链实证</span>
+                </a>
+                <span class="text-3xl font-black text-white font-mono">16w+ <span class="text-sm text-gray-500">浏览 × <span id="metric-viral-count">2</span></span></span>
+              </div>
+              <div class="w-full bg-white/5 rounded-full h-1.5"><div class="bg-gradient-to-r from-red-500 to-pink-500 h-1.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]" id="bar-viral" style="width: 100%"></div></div>
+              <p class="text-xs text-gray-500 mt-2">爆款裂变极大提升转化，闲鱼捡漏赚差价，精准流量流向私域。</p>
+            </div>
+          </div>
+          
+          <!-- 每日随机数据脚本文案更新 -->
+          <script>
+            if (typeof window !== "undefined") {
+              const today = new Date();
+              // Create a deterministic pseudo-random seed based on the current day (YYYY-MM-DD)
+              const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+              
+              function random(seed) {
+                const x = Math.sin(seed++) * 10000;
+                return x - Math.floor(x);
+              }
+
+              const metrics = {
+                'coding': { base: 2800, variance: 1200, isFloat: false },
+                'media': { base: 120, variance: 60, isFloat: false },
+                'human': { base: 20, variance: 15, isFloat: false },
+                'viral-count': { base: 1, variance: 3, isFloat: false }
+              };
+
+              let currentSeed = seed;
+              for (const [id, config] of Object.entries(metrics)) {
+                const r = random(currentSeed++);
+                let value = config.base + (r * config.variance);
+                
+                if (!config.isFloat) {
+                  value = Math.floor(value);
+                } else {
+                  value = parseFloat(value.toFixed(config.toFixed));
+                }
+
+                const el = document.getElementById(`metric-${id}`);
+                if (el) el.textContent = value.toString();
+
+                const barEl = document.getElementById(`bar-${id}`);
+                if (barEl) {
+                   let percent = (value / (config.base + config.variance)) * 100;
+                   if (percent < 15) percent = 15;
+                   if (percent > 100) percent = 100;
+                   if (id === 'human') percent = (value / 60) * 100; 
+                   barEl.style.width = `${percent}%`;
+                }
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 龙虾战绩数据区块 -->
+  <section class="py-20 bg-gradient-to-b from-black via-neutral-900 to-neutral-900">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">龙虾军团战绩</h2>
+        <p class="text-gray-400">数据说话，每一只龙虾都在创造价值</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {achievements.map((a) => (
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-orange-500/50 transition-all hover:bg-white/10 group">
+            <div class="text-4xl mb-4">{a.icon}</div>
+            <h3 class="text-lg font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">{a.title}</h3>
+            <p class="text-2xl font-black text-yellow-400 mb-3">{a.bigNumber}</p>
+            <p class="text-sm text-gray-500 leading-relaxed">{a.story}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 100 Cases Scroll Section -->
+  <section class="h-[500vh] bg-neutral-900 w-full relative" id="scroll-wrapper">
+     <div class="sticky top-0 w-full h-screen overflow-hidden flex items-center bg-black bg-grid-pattern" id="track-container">
+        <!-- Progress / Center Text -->
+        <div class="absolute inset-0 pointer-events-none flex flex-col items-center py-10 z-20 mix-blend-difference">
+            <div class="text-[120px] font-black opacity-10 tracking-tighter" id="case-counter">001/100</div>
+        </div>
+
+        <div class="flex gap-12 px-[50vw] items-center" id="reel">
+           {cases.map((c, index) => (
+              <div class={`flex-shrink-0 w-[380px] p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl group hover:border-orange-500/50 transition-all ${index % 2===0 ? 'mt-[-80px]' : 'mt-[80px]'} relative`}>
+                 <!-- 顶部：龙虾类型 + 状态 -->
+                 <div class="flex items-center justify-between mb-4">
+                   <span class={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full ${
+                     c.lobsterType.color === 'orange' ? 'bg-orange-500/20 text-orange-400' :
+                     c.lobsterType.color === 'green' ? 'bg-green-500/20 text-green-400' :
+                     c.lobsterType.color === 'purple' ? 'bg-purple-500/20 text-purple-400' :
+                     c.lobsterType.color === 'blue' ? 'bg-blue-500/20 text-blue-400' :
+                     'bg-red-500/20 text-red-400'
+                   }`}>
+                     🦞 {c.lobsterType.name}
+                   </span>
+                   <span class={`flex items-center gap-1 text-xs ${
+                     c.status === '运行中' ? 'text-green-400' :
+                     c.status === '已交付' ? 'text-blue-400' :
+                     'text-yellow-400'
+                   }`}>
+                     <span class={`w-1.5 h-1.5 rounded-full ${
+                       c.status === '运行中' ? 'bg-green-400' :
+                       c.status === '已交付' ? 'bg-blue-400' :
+                       'bg-yellow-400'
+                     }`}></span>
+                     {c.status}
+                   </span>
+                 </div>
+
+                 <!-- 序号 -->
+                 <div class="text-[50px] font-black text-white/10 mb-2 tracking-tighter group-hover:text-white/30 transition-colors">
+                   {(index+1).toString().padStart(3, '0')}
+                 </div>
+
+                 <!-- 标题 + 描述 -->
+                 <h3 class="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">{c.title}</h3>
+                 <p class="text-gray-400 text-sm leading-relaxed mb-4">{c.desc}</p>
+
+                 <!-- 底部：收入数据 -->
+                 <div class="flex items-center justify-between border-t border-white/10 pt-4">
+                    <div class="flex flex-col">
+                      <span class="text-xs text-gray-500">今日收入</span>
+                      <span class="text-lg font-black text-yellow-400">{c.dailyRevenue}</span>
+                    </div>
+                    <span class="text-sm font-bold text-gray-400 bg-white/5 px-3 py-1.5 rounded-full">{c.price}</span>
+                 </div>
+              </div>
+           ))}
+        </div>
+     </div>
+  </section>
+
+  <!-- Cyber Town Section -->
+  <section id="cyber-town-section">
+     <CyberTown />
+  </section>
+
+  <style>
+     .bg-grid-pattern {
+         background-size: 50px 50px;
+         background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+     }
+  </style>
+
+  <script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (typeof window !== "undefined") {
+      const reel = document.getElementById("reel");
+      const scrollWrapper = document.getElementById("scroll-wrapper");
+
+      if(reel && scrollWrapper) {
+         let tl = gsap.to(reel, {
+            x: () => -(reel.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+               trigger: scrollWrapper,
+               start: "top top",
+               end: "bottom bottom",
+               scrub: 1,
+               onUpdate: (self) => {
+                  const count = Math.ceil(self.progress * 100);
+                  const counterEl = document.getElementById("case-counter");
+                  if(counterEl) {
+                     counterEl.innerText = `${count.toString().padStart(3, '0')}/100`;
+                  }
+               }
+            }
+         });
+      }
+    }
+  </script>
+</Layout>

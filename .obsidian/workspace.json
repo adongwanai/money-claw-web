@@ -1,0 +1,227 @@
+{
+  "main": {
+    "id": "c8e360a19f581d8f",
+    "type": "split",
+    "children": [
+      {
+        "id": "6cf988528948e510",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f6ffa8b25eb24dde",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03-技术学习/openclaw002.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "openclaw002"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "695a0124db93e222",
+    "type": "split",
+    "children": [
+      {
+        "id": "45b5dbcab6bd54bb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1488f15644fb8a8a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "0b7d9f526dc9ed17",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "f6d3d0dced85174b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a4bd965d7dac32d8",
+    "type": "split",
+    "children": [
+      {
+        "id": "9f4da56873623604",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2dcaea686fb288c5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "03-技术学习/openclaw002.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "openclaw002 的反向链接列表"
+            }
+          },
+          {
+            "id": "0f7fefac8b3c649f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "03-技术学习/openclaw002.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "openclaw002 的出链列表"
+            }
+          },
+          {
+            "id": "7837c583cebc339c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "f6b4e97f1cb01969",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "a3514aca9dca6ba4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "03-技术学习/openclaw002.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "openclaw002 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "f6ffa8b25eb24dde",
+  "lastOpenFiles": [
+    "website/public/openclaw_card.png",
+    "website/src/components/CyberTown.astro",
+    "website/src/components/Loader.astro",
+    "website/node_modules/gsap/types/tween.d.ts",
+    "website/node_modules/gsap/types/utils/velocity-tracker.d.ts",
+    "website/node_modules/gsap/types/utils",
+    "website/node_modules/gsap/types/text-plugin.d.ts",
+    "website/node_modules/gsap/types/timeline.d.ts",
+    "website/node_modules/gsap/src/SplitText.ts",
+    "website/node_modules/gsap/types/split-text.d.ts",
+    "website/node_modules/gsap/types/scroll-trigger.d.ts",
+    "website/node_modules/gsap/SECURITY.md",
+    "website/node_modules/gsap/README.md",
+    "website/node_modules/lucide-react/README.md",
+    "website/node_modules/react/README.md",
+    "website/dist/favicon.svg",
+    "website/node_modules/enhanced-resolve/README.md",
+    "website/node_modules/lightningcss-darwin-arm64/README.md",
+    "website/node_modules/@tailwindcss/vite/README.md",
+    "website/node_modules/tailwindcss/README.md",
+    "website/node_modules/@tailwindcss/node/README.md",
+    "website/node_modules/lightningcss/README.md",
+    "website/node_modules/@tailwindcss/oxide-darwin-arm64/README.md",
+    "website/node_modules/@jridgewell/remapping/README.md",
+    "website/node_modules/@emnapi/runtime/README.md",
+    "website/node_modules/tapable/README.md",
+    "website/node_modules/graceful-fs/README.md",
+    "website/node_modules/@jridgewell/trace-mapping/README.md",
+    "website/node_modules/@jridgewell/resolve-uri/README.md",
+    "website/node_modules/@jridgewell/gen-mapping/README.md",
+    "website/node_modules/jiti/README.md",
+    "website/node_modules/tslib/SECURITY.md",
+    "website/node_modules/tslib/README.md",
+    "website/node_modules/fsevents/README.md",
+    "website/node_modules/typescript/SECURITY.md",
+    "website/node_modules/typescript/README.md",
+    "website/node_modules/astro/README.md",
+    "website/public/favicon.svg"
+  ]
+}

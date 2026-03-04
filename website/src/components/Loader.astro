@@ -1,0 +1,71 @@
+<div id="intro-loader" class="fixed inset-0 bg-black z-[100] flex flex-col items-center justify-end overflow-hidden pb-0 transition-opacity duration-700">
+  <div class="text-white text-[12vw] font-[900] leading-none mb-10 tracking-widest relative z-10 opacity-0" id="loader-year">2026</div>
+  <div id="bars-container" class="flex w-full h-[60vh] items-end justify-between px-2 opacity-0">
+  </div>
+</div>
+
+<script>
+import { gsap } from "gsap";
+
+if (typeof window !== "undefined") {
+  const container = document.getElementById("bars-container");
+  if (container) {
+    // Generate 100 bars
+    for(let i=0; i<100; i++) {
+       const bar = document.createElement("div");
+       bar.className = "w-[0.5%] h-full bg-white loader-bar origin-bottom scale-y-0 opacity-50";
+       container.appendChild(bar);
+    }
+  }
+
+  // Animation sequence
+  window.addEventListener("load", () => {
+     const tl = gsap.timeline({
+        onComplete: () => {
+           gsap.to("#intro-loader", { 
+             opacity: 0, 
+             duration: 0.8, 
+             ease: "power2.inOut",
+             onComplete: () => { document.getElementById("intro-loader").style.display = 'none'; }
+           });
+           
+           // Explode effect on the main content
+           gsap.fromTo("#main-content", 
+             { scale: 1.1, opacity: 0, y: 50 }, 
+             { scale: 1, opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+           );
+        }
+     });
+
+     tl.to("#bars-container", {
+         opacity: 1,
+         duration: 0.1
+     }).to(".loader-bar", {
+         scaleY: 1,
+         duration: 1.5,
+         stagger: {
+             each: 0.015,
+             from: "random"
+         },
+         ease: "power1.inOut"
+     }).to("#loader-year", {
+         opacity: 1,
+         y: -20,
+         duration: 0.8,
+         ease: "back.out(1.7)"
+     }, "-=1.0")
+     .to(".loader-bar", {
+         scaleY: 1.2,
+         opacity: 1,
+         duration: 0.5,
+         ease: "power2.in",
+         stagger: 0.005
+     }, "+=0.2")
+     .to("#loader-year", {
+         scale: 1.5,
+         opacity: 0,
+         duration: 0.4
+     }, "-=0.3");
+  });
+}
+</script>

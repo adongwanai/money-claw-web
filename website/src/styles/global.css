@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: #E64215;
+  --color-brand-orange-light: #FF5A2D;
+  --color-bg-base: #F8F7F3;
+  /* Cream/Off-white matching sanwan.ai */
+  --color-bg-card: #FFFFFF;
+  --color-text-main: #1C1C1E;
+  --color-text-muted: #6B7280;
+  --color-border-card: #E5E7EB;
+  --color-border-accent: #E64215;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-main);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .clean-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-card);
+    border-radius: 0.75rem;
+    /* 12px */
+    padding: 1.5rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .clean-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .clean-card.accent-hover:hover {
+    border-color: var(--color-brand-orange);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: white;
+    color: var(--color-text-main);
+    transition: all 200ms ease;
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(0, 0, 0, 0.2);
+    background-color: #F9FAFB;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background-color: var(--color-brand-orange);
+    color: white;
+    transition: all 200ms ease;
+    box-shadow: 0 4px 12px rgba(230, 66, 21, 0.2);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-brand-orange-light);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(230, 66, 21, 0.3);
+  }
+
+  .badge-light {
+    background-color: #FFF2EE;
+    color: #CC3A12;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}

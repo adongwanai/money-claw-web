@@ -1,0 +1,944 @@
+<div class="cyber-town-container">
+  <!-- 标题区 -->
+  <div class="town-header">
+    <h2 class="town-title">
+      <span class="title-icon">🏘️</span>
+      赛博龙虾小镇
+    </h2>
+    <div class="town-vision">
+      <p class="vision-main">赛博小镇里，每只龙虾都是你的员工。<br>写稿、带货、收租、客服、造产品——全自动运转，你只管数钱。</p>
+      <p class="vision-sub">每个人都应该有自己的 <span class="highlight">SecondMe</span>：理解你、成为你、超越你。</p>
+      <p class="vision-action">不停地去 <span class="highlight">Output and Build</span>，去 <span class="highlight">Vibe 产品</span>，去 <span class="highlight">Marketing</span>，这才是未来的样子。</p>
+    </div>
+  </div>
+
+  <!-- 游戏场景 -->
+  <div class="game-scene" id="game-scene">
+    <!-- 天空背景 -->
+    <div class="sky"></div>
+
+    <!-- 远景建筑 -->
+    <div class="buildings-far">
+      <div class="building-far b1"></div>
+      <div class="building-far b2"></div>
+      <div class="building-far b3"></div>
+      <div class="building-far b4"></div>
+      <div class="building-far b5"></div>
+    </div>
+
+    <!-- 主要建筑区 -->
+    <div class="town-main">
+      <!-- 左侧：银行 -->
+      <div class="building bank" data-name="金库" data-income="¥2,340/日">
+        <div class="building-roof bank-roof"></div>
+        <div class="building-body">
+          <div class="window-row">
+            <div class="window"></div>
+            <div class="window"></div>
+          </div>
+          <div class="window-row">
+            <div class="window lit"></div>
+            <div class="window lit"></div>
+          </div>
+          <div class="door"></div>
+        </div>
+        <div class="building-sign">💰 金库</div>
+      </div>
+
+      <!-- 中间：写字楼 -->
+      <div class="building office" data-name="写字楼" data-income="¥5,680/日">
+        <div class="building-roof office-roof"></div>
+        <div class="building-body office-body">
+          <div class="window-row">
+            <div class="window lit"></div>
+            <div class="window"></div>
+            <div class="window lit"></div>
+          </div>
+          <div class="window-row">
+            <div class="window"></div>
+            <div class="window lit"></div>
+            <div class="window"></div>
+          </div>
+          <div class="window-row">
+            <div class="window lit"></div>
+            <div class="window lit"></div>
+            <div class="window lit"></div>
+          </div>
+          <div class="door double"></div>
+        </div>
+        <div class="building-sign">🏢 写字楼</div>
+      </div>
+
+      <!-- 右侧：商店 -->
+      <div class="building shop" data-name="带货铺" data-income="¥1,890/日">
+        <div class="building-roof shop-roof"></div>
+        <div class="building-body">
+          <div class="shop-window"></div>
+          <div class="door shop-door"></div>
+        </div>
+        <div class="building-sign">🛒 带货铺</div>
+      </div>
+
+      <!-- 最右：创意工作室 -->
+      <div class="building studio" data-name="创意工作室" data-income="¥3,450/日">
+        <div class="building-roof studio-roof"></div>
+        <div class="building-body">
+          <div class="window-row">
+            <div class="window lit big"></div>
+          </div>
+          <div class="door"></div>
+        </div>
+        <div class="building-sign">🎨 创意室</div>
+      </div>
+    </div>
+
+    <!-- 地面/道路 -->
+    <div class="ground">
+      <div class="road">
+        <div class="road-line"></div>
+        <div class="road-line"></div>
+        <div class="road-line"></div>
+      </div>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="decorations">
+      <div class="tree t1">🌳</div>
+      <div class="tree t2">🌲</div>
+      <div class="lamp l1">🏮</div>
+      <div class="lamp l2">🏮</div>
+    </div>
+
+    <!-- 龙虾活动区 -->
+    <div class="lobster-area" id="lobster-area">
+      <!-- 龙虾会通过 JS 动态添加 -->
+    </div>
+
+    <!-- 金币雨 -->
+    <div class="coin-rain" id="coin-rain"></div>
+
+    <!-- 消息气泡 -->
+    <div class="message-bubbles" id="message-bubbles"></div>
+  </div>
+
+  <!-- 底部状态栏 -->
+  <div class="town-statusbar">
+    <div class="status-item">
+      <span class="status-icon">🦞</span>
+      <span class="status-label">在线龙虾</span>
+      <span class="status-value" id="online-count">23</span>
+    </div>
+    <div class="status-item">
+      <span class="status-icon">💰</span>
+      <span class="status-label">今日收入</span>
+      <span class="status-value">¥2,847</span>
+    </div>
+    <div class="status-item">
+      <span class="status-icon">⚡</span>
+      <span class="status-label">运行时间</span>
+      <span class="status-value">47天</span>
+    </div>
+    <div class="status-item highlight">
+      <span class="status-icon">📈</span>
+      <span class="status-label">总资产</span>
+      <span class="status-value">¥128,456</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.cyber-town-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 像素风格字体 */
+.town-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  z-index: 10;
+}
+
+.town-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.5rem;
+  color: #ffd700;
+  text-shadow: 3px 3px 0 #ff6b00, 6px 6px 0 rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-icon {
+  font-size: 2rem;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.town-subtitle {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.town-vision {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 102, 255, 0.1);
+  border: 1px solid rgba(0, 102, 255, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  display: inline-block;
+  text-align: center;
+}
+
+.vision-main {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.vision-sub {
+  color: #a78bfa;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.vision-action {
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+
+.town-vision .highlight {
+  color: #00ffcc;
+  font-family: 'Space Mono', monospace;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* 游戏场景容器 */
+.game-scene {
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  position: relative;
+  background: linear-gradient(180deg,
+    #1a0a2e 0%,
+    #2d1b4e 30%,
+    #4a2c6a 60%,
+    #1a3a2e 85%,
+    #0d2818 100%
+  );
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 4px #333,
+    0 0 0 8px #111,
+    0 20px 60px rgba(0,0,0,0.5);
+  image-rendering: pixelated;
+}
+
+/* 天空星星 */
+.sky {
+  position: absolute;
+  width: 100%;
+  height: 60%;
+  top: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, white, transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 230px 80px, white, transparent),
+    radial-gradient(2px 2px at 300px 50px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 400px 90px, white, transparent),
+    radial-gradient(2px 2px at 500px 30px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 600px 70px, white, transparent),
+    radial-gradient(2px 2px at 700px 110px, white, transparent),
+    radial-gradient(1px 1px at 800px 60px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 900px 40px, white, transparent);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* 远景建筑 */
+.buildings-far {
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.building-far {
+  background: #1a1a2e;
+  opacity: 0.6;
+}
+
+.building-far.b1 { width: 40px; height: 80px; }
+.building-far.b2 { width: 30px; height: 60px; }
+.building-far.b3 { width: 50px; height: 90px; }
+.building-far.b4 { width: 35px; height: 55px; }
+.building-far.b5 { width: 45px; height: 70px; }
+
+/* 主要建筑区 */
+.town-main {
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+  right: 5%;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+/* 建筑通用样式 - 像素风格 */
+.building {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  image-rendering: pixelated;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.building:hover {
+  transform: scale(1.05);
+}
+
+.building:hover .building-sign {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.building-roof {
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.bank-roof {
+  border-width: 0 35px 25px 35px;
+  border-color: transparent transparent #8b4513 transparent;
+}
+
+.office-roof {
+  border-width: 0 45px 30px 45px;
+  border-color: transparent transparent #2c3e50 transparent;
+}
+
+.shop-roof {
+  border-width: 0 30px 20px 30px;
+  border-color: transparent transparent #e74c3c transparent;
+}
+
+.studio-roof {
+  border-width: 0 25px 20px 25px;
+  border-color: transparent transparent #9b59b6 transparent;
+}
+
+.building-body {
+  background: #34495e;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  box-shadow:
+    inset -4px 0 0 #2c3e50,
+    inset 4px 0 0 #4a6278;
+}
+
+.bank .building-body {
+  width: 60px;
+  height: 70px;
+  background: linear-gradient(180deg, #d4a574 0%, #c4956a 100%);
+}
+
+.office .building-body {
+  width: 80px;
+  height: 100px;
+  background: linear-gradient(180deg, #3498db 0%, #2980b9 100%);
+}
+
+.office-body {
+  background: linear-gradient(180deg, #3498db 0%, #2980b9 100%) !important;
+}
+
+.shop .building-body {
+  width: 50px;
+  height: 55px;
+  background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.studio .building-body {
+  width: 45px;
+  height: 60px;
+  background: linear-gradient(180deg, #9b59b6 0%, #8e44ad 100%);
+}
+
+/* 窗户 */
+.window-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.window {
+  width: 12px;
+  height: 12px;
+  background: #1a1a2e;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.window.lit {
+  background: #ffd700;
+  box-shadow:
+    inset 2px 2px 0 rgba(255,255,255,0.5),
+    0 0 10px rgba(255,215,0,0.5);
+  animation: flicker 2s ease-in-out infinite;
+}
+
+.window.big {
+  width: 24px;
+  height: 16px;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* 门 */
+.door {
+  width: 14px;
+  height: 20px;
+  background: #1a1a2e;
+  margin-top: auto;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.door.double {
+  width: 24px;
+}
+
+.shop-window {
+  width: 30px;
+  height: 20px;
+  background: #ffd700;
+  opacity: 0.7;
+  margin-bottom: 4px;
+  box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.shop-door {
+  width: 12px;
+  height: 16px;
+}
+
+/* 建筑标签 */
+.building-sign {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(0,0,0,0.8);
+  color: #ffd700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.2s;
+  font-family: monospace;
+}
+
+/* 地面 */
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+  background: linear-gradient(180deg, #2d5a27 0%, #1a3a18 100%);
+}
+
+.road {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: #333;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-left: 30px;
+}
+
+.road-line {
+  width: 40px;
+  height: 4px;
+  background: #ffd700;
+}
+
+/* 装饰 */
+.decorations {
+  position: absolute;
+  bottom: 15%;
+  left: 0;
+  right: 0;
+  height: 50px;
+  pointer-events: none;
+}
+
+.tree {
+  position: absolute;
+  font-size: 2rem;
+  bottom: 10px;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.3));
+}
+
+.tree.t1 { left: 8%; }
+.tree.t2 { right: 12%; }
+
+.lamp {
+  position: absolute;
+  font-size: 1.5rem;
+  bottom: 50px;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.lamp.l1 { left: 25%; }
+.lamp.l2 { right: 30%; }
+
+@keyframes glow {
+  from { filter: drop-shadow(0 0 5px #ffd700); }
+  to { filter: drop-shadow(0 0 15px #ffd700); }
+}
+</style>
+
+<style is:global>
+/* 龙虾 */
+.lobster-area {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lobster {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transition: transform 0.1s;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.lobster-name {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 204, 0.4);
+  color: #00ffcc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  font-family: monospace;
+  margin-bottom: -5px;
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.lobster-emoji {
+  font-size: 2rem;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.5));
+  animation: waddle 0.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.lobster.working .lobster-emoji {
+  animation: waddle 0.3s ease-in-out infinite;
+}
+
+.lobster-action {
+  position: absolute;
+  top: -30px;
+  background: linear-gradient(135deg, #ff6b00, #ff00ff);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.5);
+  z-index: 3;
+}
+
+.lobster-action.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes waddle {
+  0%, 100% { transform: rotate(-5deg) translateY(0); }
+  50% { transform: rotate(5deg) translateY(-3px); }
+}
+
+/* 金币 */
+.coin {
+  position: absolute;
+  font-size: 1.2rem;
+  pointer-events: none;
+  animation: coinFall linear forwards;
+  z-index: 100;
+}
+
+@keyframes coinFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(500px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* 消息气泡 */
+.message-bubble {
+  position: absolute;
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  animation: bubbleUp 3s ease-out forwards;
+  z-index: 50;
+  font-family: monospace;
+}
+
+.message-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.9) transparent transparent;
+}
+
+@keyframes bubbleUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+</style>
+
+<style>
+/* 底部状态栏 */
+.town-statusbar {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 10;
+}
+
+.status-item {
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.status-item:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: #ffd700;
+}
+
+.status-item.highlight {
+  background: rgba(255,215,0,0.1);
+  border-color: #ffd700;
+}
+
+.status-icon {
+  font-size: 1.25rem;
+}
+
+.status-label {
+  color: #e5e7eb;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.status-value {
+  color: #ffd700;
+  font-weight: 900;
+  font-family: monospace;
+  text-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .game-scene {
+    height: 400px;
+  }
+
+  .town-main {
+    gap: 0.5rem;
+  }
+
+  .building-body {
+    transform: scale(0.8);
+  }
+
+  .town-title {
+    font-size: 1rem;
+  }
+
+  .status-item {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Bounce 动画 */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+</style>
+
+<script>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+if (typeof window !== "undefined") {
+  // 龙虾类型
+  const lobsterTypes = [
+    { name: '代码虾' },
+    { name: '写稿虾' },
+    { name: '收租虾' },
+    { name: '闲鱼虾' },
+    { name: '带货虾' },
+    { name: '剪辑虾' },
+    { name: '客服虾' },
+    { name: '交易虾' },
+    { name: '学习虾' }
+  ];
+
+  // 活动库
+  const livelyActions = [
+    "写代码创造应用，冲刺AI出海 🌍",
+    "逛闲鱼捡漏赚高额差价 📱",
+    "SecondMe进化中：理解你成为你 🧠",
+    "全自动 Output and Build ⚙️",
+    "正在Vibe新产品，制定Marketing策略 📈",
+    "正在剪辑爆款短视频 ✂️",
+    "达成一笔新交易 💰",
+    "深度学习爆款文案中 📚",
+    "自动回复了 15 个客户",
+    "一键分发到推特和红书 🚀",
+    "与带货虾交换情报 🤝",
+    "正在抓取全网最新干货 📡"
+  ];
+
+  // 工作消息
+  const workMessages = [
+    '刚发了3篇笔记 💰',
+    '收到会员费 +¥99',
+    '带货转化率 12%',
+    '视频剪辑完成 ✂️',
+    '客户已回复 ✓',
+    '自动收款中...',
+    '内容已发布 📝',
+    '新订单 +¥199',
+  ];
+
+  // 滚动触发
+  ScrollTrigger.create({
+    trigger: "#cyber-town-section",
+    start: "top 60%",
+    onEnter: () => {
+      initTown();
+    },
+    once: true
+  });
+
+  function initTown() {
+    const lobsterArea = document.getElementById('lobster-area');
+    const coinRain = document.getElementById('coin-rain');
+    const messageBubbles = document.getElementById('message-bubbles');
+
+    if (!lobsterArea || !coinRain || !messageBubbles) return;
+
+    // 生成龙虾
+    for (let i = 0; i < 12; i++) {
+      setTimeout(() => {
+        createLobster(lobsterArea, i);
+      }, i * 200);
+    }
+
+    // 持续掉金币
+    setInterval(() => {
+      createCoin(coinRain);
+    }, 300);
+
+    // 随机消息气泡
+    setInterval(() => {
+      if (Math.random() > 0.5) {
+        createBubble(messageBubbles);
+      }
+    }, 2000);
+  }
+
+  function createLobster(container: HTMLElement, index: number) {
+    const type = lobsterTypes[index % lobsterTypes.length];
+    const lobster = document.createElement('div');
+    lobster.className = 'lobster';
+
+    // 随机初始位置
+    const startX = 10 + Math.random() * 75;
+    const startY = 55 + Math.random() * 30;
+
+    // Ensure lobster starts at random positions clearly across the view
+    lobster.style.left = `${startX}%`;
+    lobster.style.bottom = `${startY}%`;
+
+    lobster.innerHTML = `
+      <div class="lobster-action" id="action-${index}"></div>
+      <div class="lobster-name">${type.name}</div>
+      <div class="lobster-emoji">🦞</div>
+    `;
+
+    container.appendChild(lobster);
+
+    // Give it a brief delay before starting interaction
+    setTimeout(() => { animateLobster(lobster); }, Math.random() * 2000);
+  }
+
+  function animateLobster(lobster: HTMLElement) {
+    const move = () => {
+      // 跑到建筑附近，扩大活动范围，避免挤在左侧
+      const newX = 5 + Math.random() * 85; 
+      const newY = 30 + Math.random() * 45;
+      const duration = 2 + Math.random() * 4;
+
+      lobster.classList.add('working');
+
+      gsap.to(lobster, {
+        left: `${newX}%`,
+        bottom: `${newY}%`,
+        duration: duration,
+        ease: "power1.inOut",
+        onComplete: () => {
+          lobster.classList.remove('working');
+          
+          // 悬停时随机弹出动态交互气泡
+          const actionEl = lobster.querySelector('.lobster-action');
+          if (actionEl && Math.random() > 0.4) {
+             actionEl.textContent = livelyActions[Math.floor(Math.random() * livelyActions.length)];
+             actionEl.classList.add('show');
+             // 2.5秒后隐藏气泡
+             setTimeout(() => {
+                actionEl.classList.remove('show');
+             }, 2500);
+          }
+
+          // 休息一会儿继续移动
+          setTimeout(move, 3000 + Math.random() * 2000);
+        }
+      });
+    };
+
+    move();
+  }
+
+  function createCoin(container: HTMLElement) {
+    const coin = document.createElement('div');
+    coin.className = 'coin';
+    coin.textContent = '💰';
+
+    const startX = Math.random() * 90 + 5;
+    const duration = 2 + Math.random() * 2;
+
+    coin.style.left = `${startX}%`;
+    coin.style.top = '0';
+    coin.style.animationDuration = `${duration}s`;
+
+    container.appendChild(coin);
+
+    setTimeout(() => {
+      coin.remove();
+    }, duration * 1000);
+  }
+
+  function createBubble(container: HTMLElement) {
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+
+    const message = workMessages[Math.floor(Math.random() * workMessages.length)];
+    const startX = 15 + Math.random() * 70;
+
+    bubble.textContent = message;
+    bubble.style.left = `${startX}%`;
+    bubble.style.bottom = '35%';
+
+    container.appendChild(bubble);
+
+    setTimeout(() => {
+      bubble.remove();
+    }, 3000);
+  }
+}
+</script>
