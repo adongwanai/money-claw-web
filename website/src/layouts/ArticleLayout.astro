@@ -1,60 +1,132 @@
 ---
-import Layout from './Layout.astro';
+import LightLayout from './LightLayout.astro';
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={`${frontmatter.title} | 龙虾赚钱日记`}>
-  <div class="min-h-screen bg-black text-white pt-24 pb-16">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<LightLayout title={`${frontmatter.title} | 龙虾赚钱日记`}>
+  
+  {/* Hero Header Section */}
+  <div class="w-full bg-white border-b border-gray-100 pb-16 pt-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       
-      <a href="/articles" class="inline-flex items-center text-gray-500 hover:text-orange-500 transition-colors mb-8 font-mono text-sm">
-        ← RETURN_TO_KNOWLEDGE_BASE
+      <a href="/articles" class="inline-flex items-center text-gray-400 hover:text-orange-500 transition-colors mb-10 font-bold text-sm bg-gray-50 px-4 py-2 rounded-full border border-gray-100 shadow-sm">
+        <span class="mr-2">←</span> 返回知识库
       </a>
 
-      <header class="mb-10 border-b border-white/10 pb-8">
-        <div class="flex flex-wrap gap-2 mb-4">
-          {frontmatter.tags && frontmatter.tags.map(tag => (
-            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-xs font-bold tracking-wider text-gray-300 rounded uppercase">
-              {tag}
-            </span>
-          ))}
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        {frontmatter.tags && frontmatter.tags.map(tag => (
+          <span class="px-3.5 py-1.5 bg-orange-50 border border-orange-100 text-orange-600 text-[13px] font-black tracking-widest rounded-full uppercase shadow-sm">
+            {tag}
+          </span>
+        ))}
+      </div>
+      
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-10 text-gray-900 leading-[1.15] tracking-tight">
+        {frontmatter.title}
+      </h1>
+      
+      <div class="flex items-center justify-center gap-6 text-gray-500 font-bold text-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">📅</span> {frontmatter.date}
         </div>
-        <h1 class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">
-          {frontmatter.title}
-        </h1>
-        <div class="flex items-center gap-4 text-gray-500 font-mono text-sm">
-          <span>{frontmatter.date}</span>
-          <span>//</span>
-          <span>AUTHOR: {frontmatter.author}</span>
+        <span class="text-gray-300">|</span>
+        <div class="flex items-center gap-2">
+          <span class="text-lg">🦞</span> {frontmatter.author}
         </div>
-      </header>
+      </div>
+      
+    </div>
+  </div>
 
-      <article class="prose prose-invert prose-lg prose-orange max-w-none">
+  {/* Article Content Section */}
+  <div class="w-full bg-[#fdfdfc] py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <article class="prose-custom">
         <slot />
       </article>
 
-      <div class="mt-16 pt-8 border-t border-white/10 text-center">
-        <p class="text-gray-500 font-mono text-sm">EOF - END OF TRANSMISSION</p>
+      <div class="mt-24 pt-10 border-t border-gray-200 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 text-gray-400 font-mono text-xs rounded-lg border border-gray-100">
+          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          EOF - END OF TRANSMISSION
+        </div>
       </div>
+      
     </div>
   </div>
-</Layout>
+  
+</LightLayout>
 
 <style is:global>
-  .prose pre {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.5rem;
+  @reference "../styles/global.css";
+
+  /* Expansive & Elegant Custom Prose Styles */
+  .prose-custom {
+    @apply text-lg md:text-[21px] text-gray-800 leading-[1.8] md:leading-[2] font-normal tracking-wide;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
-  .prose code {
-    color: #f97316;
+  
+  .prose-custom p {
+    @apply mb-8 text-[#333333];
   }
-  .prose a {
-    color: #60a5fa;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+  
+  .prose-custom h1, .prose-custom h2, .prose-custom h3 {
+    @apply font-black text-gray-900 leading-tight tracking-tight mt-16 mb-8;
   }
-  .prose a:hover {
-    border-bottom-color: #60a5fa;
+  
+  .prose-custom h1 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  .prose-custom h2 {
+    @apply text-2xl md:text-3xl pb-3 border-b border-gray-100;
+  }
+  
+  .prose-custom h3 {
+    @apply text-xl md:text-2xl flex items-center gap-3;
+  }
+  .prose-custom h3::before {
+    content: '';
+    @apply block w-1.5 h-6 bg-[#ca3d2f] rounded-full;
+  }
+  
+  .prose-custom strong, .prose-custom b {
+    @apply font-black text-gray-900 bg-orange-50 px-1 rounded;
+  }
+  
+  .prose-custom ul, .prose-custom ol {
+    @apply mb-8 pl-8 space-y-4;
+  }
+  
+  .prose-custom ul {
+    @apply list-disc marker:text-[#ca3d2f] marker:text-xl;
+  }
+  
+  .prose-custom ol {
+    @apply list-decimal font-black marker:text-gray-400;
+  }
+  .prose-custom ol li span, .prose-custom ul li span {
+    @apply font-normal;
+  }
+  
+  .prose-custom blockquote {
+    @apply border-l-4 border-[#ca3d2f] bg-gray-50/80 px-8 py-6 my-10 rounded-r-2xl italic text-gray-600 font-medium;
+  }
+  
+  .prose-custom blockquote p {
+    @apply m-0 text-xl;
+  }
+  
+  .prose-custom pre {
+    @apply bg-[#0d1117] text-gray-100 p-6 md:p-8 rounded-2xl overflow-x-auto text-[15px] font-mono leading-relaxed my-10 shadow-2xl;
+  }
+  
+  .prose-custom code:not(pre code) {
+    @apply bg-gray-100 text-[#ca3d2f] px-2 py-1 rounded text-[15px] font-mono font-bold border border-gray-200/60 transition-colors hover:bg-orange-50;
+  }
+  
+  .prose-custom a {
+    @apply text-[#ca3d2f] font-bold border-b border-[#ca3d2f]/30 hover:border-[#ca3d2f] transition-all;
   }
 </style>
