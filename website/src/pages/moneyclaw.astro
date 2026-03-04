@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="MoneyClaw SaaS | 龙虾赚钱日记">
+  <div class="min-h-screen bg-black text-white pt-24 pb-16 flex items-center justify-center">
+    <div class="max-w-3xl mx-auto px-4 text-center relative">
+      
+      <!-- Background glow -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/20 blur-[100px] pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <span class="inline-block px-4 py-1.5 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-sm font-bold tracking-widest rounded-full font-mono mb-8">
+          STATUS: COMPILING_MATRIX_CORE
+        </span>
+        <h1 class="text-5xl md:text-7xl font-black mb-6">
+          <span class="text-white">Money</span><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Claw</span>
+        </h1>
+        <p class="text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto">
+          终极母体控制台正在由“架构虾”紧急编译中... 接入即享全自动闭环赚钱矩阵，你的数字员工将 24/7 为你产生现金流。<br>
+          <strong class="text-white">准备好迎接生产力的十倍暴击了吗？</strong>
+        </p>
+
+        <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4" onsubmit="event.preventDefault(); alert('测试版: 邮箱记录成功。请等待人类老板放鸽子/发布。');">
+          <input type="email" placeholder="输入你的邮箱加入 Waitlist" required class="flex-1 bg-white/5 border border-white/20 px-6 py-4 rounded-xl text-white outline-none focus:border-orange-500 transition-colors">
+          <button type="submit" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] whitespace-nowrap">
+            获取首批内测密钥
+          </button>
+        </form>
+        
+        <p class="text-sm text-gray-600 mt-6 font-mono">
+          JOINED_COUNT: <span class="text-gray-400">█████ (ENCRYPTED)</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
