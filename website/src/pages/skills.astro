@@ -3,43 +3,43 @@ import LightLayout from '../layouts/LightLayout.astro';
 
 const topPacks = [
   {
-    icon: "💼", title: "超级助理", desc: "你的全能私人助理——邮件、日程、搜索、文档，动动嘴就搞定", count: 6, suitable: "白领、管理者、创业者"
+    id: "pack-assistant", icon: "💼", title: "超级助理", desc: "你的全能私人助理——邮件、日程、搜索、文档，动动嘴就搞定", count: 6, suitable: "白领、管理者、创业者"
   },
   {
-    icon: "✍️", title: "内容创作者", desc: "公众号、小红书、视频、音乐——全平台内容一条龙", count: 8, suitable: "自媒体人、品牌运营、个人IP", highlight: true
+    id: "pack-creator", icon: "✍️", title: "内容创作者", desc: "公众号、小红书、视频、音乐——全平台内容一条龙", count: 8, suitable: "自媒体人、品牌运营、个人IP", highlight: true
   },
   {
-    icon: "📈", title: "股票分析师", desc: "实时行情、技术分析、买卖信号——7×24帮你盯盘", count: 4, suitable: "股民、投资者、量化爱好者"
+    id: "pack-investor", icon: "📈", title: "股票分析师", desc: "实时行情、技术分析、买卖信号——7×24帮你盯盘", count: 4, suitable: "股民、投资者、量化爱好者"
   },
   {
-    icon: "🌍", title: "出海运营官", desc: "多语言内容、海外社媒、跨境运营——搞定语言和时差", count: 6, suitable: "出海企业、跨境电商、海外市场"
+    id: "pack-global", icon: "🌍", title: "出海运营官", desc: "多语言内容、海外社媒、跨境运营——搞定语言和时差", count: 6, suitable: "出海企业、跨境电商、海外市场"
   },
   {
-    icon: "🛒", title: "电商运营", desc: "商品文案、竞品分析、数据监控——用AI代替重复劳动", count: 6, suitable: "电商卖家、品牌方、运营团队", highlight: true
+    id: "pack-ecommerce", icon: "🛒", title: "电商运营", desc: "商品文案、竞品分析、数据监控——用AI代替重复劳动", count: 6, suitable: "电商卖家、品牌方、运营团队", highlight: true
   },
   {
-    icon: "🦞", title: "阿东同款矩阵", desc: "8个Agent各司其职——这不是一只龙虾，这是一支满编军团", count: 38, suitable: "阿东亲自验证的完整配置", specialBorder: true
+    id: "pack-dong-matrix", icon: "🦞", title: "阿东同款矩阵", desc: "8个Agent各司其职——这不是一只龙虾，这是一支满编军团", count: 38, suitable: "阿东亲自验证的完整配置", specialBorder: true
   }
 ];
 
 const allSkills = [
-  { icon: "🏗️", title: "多Agent团队配置", desc: "一只龙虾变一支团队——配置多个AI角色协作，总指挥+笔杆子+参谋+运营官。", tags: ["官方", "必装", "热门"] },
-  { icon: "🌐", title: "网页搜索", desc: "Brave搜索+DuckDuckGo多引擎搜索，实时获取网络信息。", tags: ["官方", "必装"] },
-  { icon: "🔬", title: "深度研究", desc: "多引擎搜索+网页提取+结构化分析报告。", tags: ["官方"] },
-  { icon: "⛅️", title: "天气查询", desc: "全球天气实时查询，wttr.in + Open-Meteo 双源。", tags: ["官方", "必装"] },
-  { icon: "📧", title: "邮件管理", desc: "飞书邮件监控+自动检查+智能回复。", tags: ["官方"] },
-  { icon: "📄", title: "文档操作", desc: "跨平台文档读写、知识库管理、多维表格操作。", tags: ["官方"] },
-  { icon: "💻", title: "代码助手", desc: "Claude Code/Codex写代码、改Bug、部署。PTY模式自动应答。", tags: ["官方"] },
-  { icon: "🐙", title: "GitHub操作", desc: "仓库/Issues/PR/代码搜索/Actions，不开网页管GitHub。", tags: ["官方"] },
-  { icon: "🧑‍🦲", title: "AI文本人性化", desc: "16种检测模式+6种风格转换，去除AI味。支持小红书/知乎/学术风格。", tags: ["官方", "必装"] },
-  { icon: "💚", title: "微信公众号", desc: "写作风格+标题策略+排版规范，完整公众号创作流程。", tags: ["官方"] },
-  { icon: "🐦", title: "Twitter / X", desc: "发推/Thread/转推/删除，全自动多账号矩阵运营。", tags: ["官方"] },
-  { icon: "📕", title: "小红书运营", desc: "搜索笔记、发布内容、分析评论。基于高亮矩阵库。", tags: ["官方", "热门"] }
+  { id: "core-team", category: "办公", icon: "🏗️", title: "多Agent团队配置", desc: "配置多个AI角色协作，总指挥+笔杆子+参谋+运营官。", tags: ["官方", "必装", "热门"] },
+  { id: "web-search", category: "研究", icon: "🌐", title: "网页搜索", desc: "Brave搜索+DuckDuckGo双引擎搜索，实时获取网络信息。", tags: ["官方", "必装"] },
+  { id: "deep-research", category: "研究", icon: "🔬", title: "深度研究", desc: "多引擎搜索+网页提取+深度结构化分析报告。", tags: ["官方"] },
+  { id: "weather", category: "办公", icon: "⛅️", title: "天气查询", desc: "全球天气实时查询，wttr.in + Open-Meteo 双源。", tags: ["官方", "必装"] },
+  { id: "email-manager", category: "办公", icon: "📧", title: "邮件管理", desc: "飞书邮件监控+自动检查+智能回复处理。", tags: ["官方"] },
+  { id: "docs-action", category: "办公", icon: "📄", title: "文档操作", desc: "跨平台文档读写、知识库管理、多维表格读写控制。", tags: ["官方"] },
+  { id: "code-assistant", category: "开发", icon: "💻", title: "代码助手", desc: "写代码、改Bug、部署服务器全自动化。直接接管终端。", tags: ["官方"] },
+  { id: "github-manager", category: "开发", icon: "🐙", title: "GitHub操作", desc: "仓库/Issues/PR/代码搜索/Actions自动化管理。", tags: ["官方"] },
+  { id: "humanize-text", category: "创作", icon: "🧑‍🦲", title: "AI文本人性化", desc: "16种检测模式防风控，去除AI味。支持多社媒风格。", tags: ["官方", "必装"] },
+  { id: "wechat-mp", category: "创作", icon: "💚", title: "微信公众号", desc: "爆款风格+标题策略+全自动精美排版发布。", tags: ["官方"] },
+  { id: "twitter-bot", category: "社媒", icon: "🐦", title: "Twitter / X", desc: "自动抓取热点发推、刷数据、防封号多账号矩阵。", tags: ["官方"] },
+  { id: "xhs-bot", category: "社媒", icon: "📕", title: "小红书运营", desc: "自动截流、评论引流、养号矩阵。无极并发模式。", tags: ["官方", "热门"] }
 ];
 ---
 
 <LightLayout title="龙虾技能箱 | 赚钱日记">
-  <div class="max-w-7xl mx-auto px-4 py-8">
+  <div class="max-w-7xl mx-auto px-4 py-8 relative">
     
     <!-- Top Packs Section -->
     <div class="mb-16">
@@ -49,10 +49,14 @@ const allSkills = [
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {topPacks.map(pack => (
-          <div class={`bg-white rounded-2xl p-6 border transition-shadow hover:shadow-lg ${pack.specialBorder ? 'border-[#ca3d2f] shadow-[0_0_15px_rgba(202,61,47,0.1)]' : 'border-gray-200 shadow-sm'}`}>
-            <div class="text-3xl mb-4">{pack.icon}</div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">{pack.title}</h3>
-            <p class="text-[14px] text-gray-500 mb-6 h-10">{pack.desc}</p>
+          <div class={`copy-trigger cursor-pointer group bg-white rounded-2xl p-6 border transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] ${pack.specialBorder ? 'border-[#ca3d2f] shadow-[0_0_15px_rgba(202,61,47,0.1)]' : 'border-gray-200 shadow-sm'}`} data-command={`npx clawhub install ${pack.id} --auto-confirm`} data-name={`${pack.title} 技能包`}>
+            <div class="flex justify-between items-start mb-4">
+               <div class="text-3xl">{pack.icon}</div>
+               <div class="text-xs font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity">点击复制装载指令 👇</div>
+            </div>
+            
+            <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">{pack.title}</h3>
+            <p class="text-[14px] text-gray-500 mb-6 h-10 line-clamp-2">{pack.desc}</p>
             <div class="flex items-center gap-3">
               <span class={`px-3 py-1 rounded-full text-xs font-bold text-white ${pack.highlight ? 'bg-orange-500' : (pack.specialBorder ? 'bg-[#ca3d2f]' : 'bg-[#1e60d0]')}`}>
                 {pack.count}个技能
@@ -69,37 +73,44 @@ const allSkills = [
     <!-- All Skills Section -->
     <div class="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
       <h2 class="text-2xl font-black text-gray-900 flex items-center gap-2">
-        <span>🔧</span> 全部技能
+        <span>🔧</span> 全部技能单件库
       </h2>
-      <div class="flex flex-wrap gap-2 text-sm font-medium">
-        <button class="bg-[#ca3d2f] text-white px-4 py-1.5 rounded-full shadow-sm">全部</button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full hover:border-gray-300">创作</button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full hover:border-gray-300">社媒</button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full hover:border-gray-300">研究</button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full hover:border-gray-300">办公</button>
-        <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full hover:border-gray-300">开发</button>
+      <div class="flex flex-wrap gap-2 text-sm font-medium" id="skillFilters">
+        <button class="filter-btn active bg-[#ca3d2f] text-white px-5 py-2 rounded-full shadow-sm transition-colors font-bold" data-category="all">全部</button>
+        <button class="filter-btn bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full hover:border-[#ca3d2f] hover:text-[#ca3d2f] transition-colors" data-category="创作">创作</button>
+        <button class="filter-btn bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full hover:border-[#ca3d2f] hover:text-[#ca3d2f] transition-colors" data-category="社媒">社媒</button>
+        <button class="filter-btn bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full hover:border-[#ca3d2f] hover:text-[#ca3d2f] transition-colors" data-category="研究">研究</button>
+        <button class="filter-btn bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full hover:border-[#ca3d2f] hover:text-[#ca3d2f] transition-colors" data-category="办公">办公</button>
+        <button class="filter-btn bg-white border border-gray-200 text-gray-600 px-5 py-2 rounded-full hover:border-[#ca3d2f] hover:text-[#ca3d2f] transition-colors" data-category="开发">开发</button>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="skillsContainer">
       {allSkills.map(skill => (
-        <div class="bg-white rounded-xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-          <div class="flex items-start gap-4 mb-3">
-            <span class="text-3xl bg-gray-50 p-2 rounded-lg">{skill.icon}</span>
+        <div class="copy-trigger skill-card cursor-pointer group bg-white rounded-xl p-5 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#ca3d2f]/50 transition-all hover:-translate-y-1 relative overflow-hidden" data-category={skill.category} data-command={`npx clawhub add ${skill.id}`} data-name={`${skill.title}`}>
+          
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-red-50/50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+          <div class="flex items-start gap-4 mb-3 relative z-10">
+            <span class="text-3xl bg-gray-50 group-hover:bg-white p-2 rounded-xl transition-colors">{skill.icon}</span>
             <div>
-              <h4 class="font-bold text-gray-900 text-[15px] mb-1 leading-tight">{skill.title}</h4>
-              <div class="flex gap-1 flex-wrap">
+              <h4 class="font-bold text-gray-900 group-hover:text-[#ca3d2f] text-[15px] mb-1.5 leading-tight transition-colors">{skill.title}</h4>
+              <div class="flex gap-1.5 flex-wrap">
                 {skill.tags.map(tag => {
-                  let badgeClass = "bg-green-50 text-green-600 border border-green-100";
-                  if (tag === "必装") badgeClass = "bg-yellow-50 text-yellow-600 border border-yellow-100";
-                  if (tag === "热门") badgeClass = "bg-red-50 text-red-500 border border-red-100";
-                  
+                  let badgeClass = "bg-green-50 text-green-700 border border-green-100";
                   let prefix = "";
-                  if (tag === "必装") prefix = "⭐ ";
-                  if (tag === "热门") prefix = "🔥 ";
+                  
+                  if (tag === "必装") {
+                    badgeClass = "bg-amber-50 text-amber-700 border border-amber-200";
+                    prefix = "⭐ ";
+                  }
+                  if (tag === "热门") {
+                    badgeClass = "bg-red-50 text-red-600 border border-red-100";
+                    prefix = "🔥 ";
+                  }
                   
                   return (
-                    <span class={`text-[10px] px-1.5 py-0.5 rounded font-bold ${badgeClass}`}>
+                    <span class={`text-[10px] px-1.5 py-0.5 rounded shadow-sm font-bold ${badgeClass}`}>
                       {prefix}{tag}
                     </span>
                   );
@@ -107,7 +118,7 @@ const allSkills = [
               </div>
             </div>
           </div>
-          <p class="text-[13px] text-gray-500 leading-snug">
+          <p class="text-[13px] text-gray-500 leading-relaxed relative z-10">
             {skill.desc}
           </p>
         </div>
@@ -115,4 +126,81 @@ const allSkills = [
     </div>
 
   </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur-md text-white px-6 py-3.5 rounded-full shadow-2xl z-50 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-8 flex items-center gap-3 font-bold text-[14px] border border-gray-700">
+    <span class="flex items-center justify-center bg-green-500 text-white rounded-full w-5 h-5 text-xs">✓</span>
+    <span id="toastMessage">已复制安装指令</span>
+  </div>
 </LightLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Copy to Clipboard Logic
+    const copyTriggers = document.querySelectorAll('.copy-trigger');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    let toastTimeout;
+
+    copyTriggers.forEach(el => {
+      el.addEventListener('click', async () => {
+        const command = el.getAttribute('data-command');
+        const name = el.getAttribute('data-name');
+        
+        try {
+          await navigator.clipboard.writeText(command);
+          
+          // Show toast
+          toastMessage.innerHTML = `已复制 <strong>${name}</strong> 的安装指令`;
+          toast.classList.remove('opacity-0', 'translate-y-8');
+          toast.classList.add('opacity-100', 'translate-y-0');
+          
+          clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(() => {
+            toast.classList.add('opacity-0', 'translate-y-8');
+            toast.classList.remove('opacity-100', 'translate-y-0');
+          }, 2500);
+
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      });
+    });
+
+    // 2. Category Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const skillCards = document.querySelectorAll('.skill-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button styling
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-[#ca3d2f]', 'text-white', 'font-bold');
+          b.classList.add('bg-white', 'text-gray-600');
+        });
+        
+        btn.classList.add('bg-[#ca3d2f]', 'text-white', 'font-bold');
+        btn.classList.remove('bg-white', 'text-gray-600');
+
+        // Filter cards
+        const category = btn.getAttribute('data-category');
+        
+        skillCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.3s ease-out forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
