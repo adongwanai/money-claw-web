@@ -377,7 +377,7 @@ User Generated Content: +156 posts</code></pre>
         <>
           <button onclick={`document.getElementById('modal-${idx}').showModal()`} class="group block text-left bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1.5 outline-none focus:ring-4 focus:ring-orange-500/20">
             <div class="aspect-[16/9] w-full overflow-hidden relative bg-gray-100">
-              <img src={entry.image} alt={entry.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+              <img src={entry.image} alt={entry.title} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               
               {/* Day Badge */}
               <div class="absolute bottom-4 left-4">
@@ -415,7 +415,7 @@ User Generated Content: +156 posts</code></pre>
                 {entry.title}
               </h2>
               
-              <img src={entry.image} alt="cover" class="w-full h-48 md:h-64 object-cover rounded-xl mb-8 shadow-sm border border-gray-100" />
+              <img src={entry.image} alt="cover" loading="lazy" decoding="async" class="w-full h-48 md:h-64 object-cover rounded-xl mb-8 shadow-sm border border-gray-100" />
               
               {/* Markdown Content Style Wrapper */}
               <div class="markdown-content text-[16px] leading-8 text-gray-700 space-y-6" set:html={entry.content} />
