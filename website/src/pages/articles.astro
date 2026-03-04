@@ -1,51 +1,26 @@
 ---
 import LightLayout from '../layouts/LightLayout.astro';
 
-const mainArticles = [
-  {
-    source: "科技媒体",
-    date: "2026-03-04",
-    time: "15min",
-    title: "The Hacker News 原创：341 个恶意生态技能曝光，代理安全指南",
-    desc: "Koi Security 审计发现部分自动化技能遭到供应链污染，龙虾用户必读安全加固实践。",
-    tags: ["深度研究", "安全审计", "风控"],
-    link: "/articles/letta-memory"
-  },
-  {
-    source: "官方实战",
-    date: "2026-03-03",
-    time: "10min",
-    title: "Windows本地满血部署全自动化矩阵，无需科学上网",
-    desc: "免除 WSL 困扰，纯 Windows 环境下基于本地模型的全托管方案，自动接入钉钉/飞书。",
-    tags: ["视频教程", "Windows", "部署"],
-    link: "/articles/zapier-loop"
-  },
-  {
-    source: "架构解析",
-    date: "2026-03-01",
-    time: "25min",
-    title: "飞书官方：一文完全搞懂全自动化生态与对接指南",
-    desc: "包含 Gateway-Node 架构深度解析、画布流转原理、自动化成本测算分析大全。",
-    tags: ["飞书", "架构", "深度"],
-    link: "/articles/mcp-skills"
-  },
-  {
-    source: "YouTube",
-    date: "2026-02-28",
-    time: "12min",
-    title: "AMD Developer Cloud 免费跑全自动业务流指南",
-    desc: "使用 MI300X 192GB 企业级 GPU 免费运行大模型，通过 API 直接暴露给前端矩阵框架。",
-    tags: ["视频教程", "算力白嫖", "云部署"],
-    link: "/articles/letta-memory"
-  }
-];
+// Dynamically fetch all markdown articles
+const allPosts = await Astro.glob('./articles/*.md');
+const sortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+
+const mainArticles = sortedPosts.map(post => ({
+  source: post.frontmatter.author || "架构虾",
+  date: post.frontmatter.date,
+  time: "10min",
+  title: post.frontmatter.title,
+  desc: "点击沉浸式阅读该指南的完整技术细节与底层执行逻辑，将自动化应用部署到属于你的一人公司架构中。",
+  tags: post.frontmatter.tags || ["实战"],
+  link: post.url
+}));
 
 const topArticles = [
-  "本地构建：最佳生产力工具榜来了，这6款代理最受欢迎",
-  "进阶分享：5分钟打造多进程协作军团",
-  "实战案例：多平台自动并发响应从0到1拆解",
-  "记忆系统：从 BM25 到向量库完整指南",
-  "无需折腾群控系统，看我如何用手机直接遥控全体后台单元"
+  "本地构建：阿东同款矩阵组件清单，这6款Agent最受欢迎",
+  "进阶分享：5分钟打造多进程协作的龙虾军团",
+  "实战案例：多平台自动并发收割指令从0到1拆解",
+  "记忆系统：从 BM25 到向量库的持久化状态指南",
+  "无需折腾群控，看我如何用手机直接遥控全体后台单元"
 ];
 ---
 
@@ -65,26 +40,31 @@ const topArticles = [
       
       <!-- Search bar -->
       <div class="relative w-full sm:w-96">
-        <input type="text" placeholder="搜索文章标题、标签、来源..." class="w-full bg-white border border-gray-200 rounded-full py-3 px-5 text-[15px] outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-shadow">
-        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">🔍</span>
+        <input id="searchInput" type="text" placeholder="搜索文章标题、标签、来源..." class="w-full bg-white border border-gray-200 rounded-full py-3 px-5 text-[15px] outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-shadow">
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl pointer-events-none">🔍</span>
       </div>
     </div>
 
     <!-- Category Tabs -->
-    <div class="flex flex-wrap gap-3 mb-8 border-b border-gray-200 pb-6">
-      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-800 font-bold rounded-full text-sm shadow-sm hover:border-gray-300">📚 全部资讯 <span class="text-gray-400 font-normal ml-1">102</span></button>
-      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">⚡️ 进阶玩法 <span class="text-gray-400">30</span></button>
-      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">🚀 部署教程 <span class="text-gray-400">29</span></button>
-      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">💡 使用技巧 <span class="text-gray-400">22</span></button>
-      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">🔍 评测分析 <span class="text-gray-400">15</span></button>
-      <button class="px-5 py-2.5 bg-[#ca3d2f] text-white font-bold rounded-full text-sm shadow-sm hover:bg-[#b03529]">🎬 视频教程 <span class="text-white/70 font-normal ml-1">6</span></button>
+    <div class="flex flex-wrap gap-3 mb-8 border-b border-gray-200 pb-6" id="categoryFilter">
+      <button class="filter-btn active px-5 py-2.5 bg-[#ca3d2f] text-white font-bold rounded-full text-sm shadow-sm transition-colors" data-filter="all">📚 全部资讯 <span class="text-white/70 font-normal ml-1">{mainArticles.length}</span></button>
+      <button class="filter-btn px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300 transition-colors" data-filter="进阶">⚡️ 进阶玩法</button>
+      <button class="filter-btn px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300 transition-colors" data-filter="架构">🚀 部署架构</button>
+      <button class="filter-btn px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300 transition-colors" data-filter="运营">💡 矩阵运营</button>
+    </div>
+
+    <!-- Full screen No Results State -->
+    <div id="noResults" class="hidden text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm w-full lg:w-[68%]">
+      <div class="text-4xl mb-4">🦞❓</div>
+      <h3 class="text-lg font-bold text-gray-900 mb-2">架构虾未能检索到相关内容</h3>
+      <p class="text-gray-500 text-sm">请尝试缩减搜索关键词或切换文章分类标签</p>
     </div>
 
     <div class="flex flex-col lg:flex-row gap-8">
       <!-- Left Column: Article Feed -->
-      <div class="w-full lg:w-[68%] space-y-6">
+      <div class="w-full lg:w-[68%] space-y-6" id="articleContainer">
         {mainArticles.map(article => (
-          <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <div class="article-card bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-all group" data-title={article.title.toLowerCase()} data-tags={article.tags.join(',').toLowerCase()}>
             <div class="flex items-center gap-3 text-xs font-mono text-gray-500 mb-4">
               <span class="text-orange-600 font-bold bg-orange-50 px-2 py-0.5 rounded">{article.source}</span>
               <span>{article.date}</span>
@@ -92,8 +72,8 @@ const topArticles = [
               <span>{article.time}</span>
             </div>
             
-            <h2 class="text-2xl font-black text-gray-900 mb-3 leading-snug">
-              {article.title}
+            <h2 class="text-2xl font-black text-gray-900 mb-3 leading-snug group-hover:text-orange-600 transition-colors">
+              <a href={article.link}>{article.title}</a>
             </h2>
             <p class="text-[15px] text-gray-600 mb-5 leading-relaxed">
               {article.desc}
@@ -141,7 +121,7 @@ const topArticles = [
             <span class="text-xl">🏷️</span> 热门标签
           </h3>
           <div class="flex flex-wrap gap-2">
-            {['部署教程 20', '架构 15', '组件化 12', '新手 10', '视频教程 9', '高级进阶 7', '记忆系统剖析 7', '飞书联动 7', 'Token消耗优化 7', '开源动态 7'].map(tag => {
+            {['部署教程 20', '节点架构 15', '私域组件化 12', '新手 10', '实战运营 9', '高级进阶 7', '记忆系统剖析 7', '飞书联动 7', 'API消耗优化 7', '全自动赚钱 7'].map(tag => {
               const [name, count] = tag.split(' ');
               return (
                 <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-[13px] px-3 py-1.5 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
@@ -157,3 +137,68 @@ const topArticles = [
 
   </div>
 </LightLayout>
+
+<script>
+  // Pure Client-side Filtering Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const articles = document.querySelectorAll('.article-card');
+    const noResults = document.getElementById('noResults');
+    const articleContainer = document.getElementById('articleContainer');
+
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterArticles() {
+      let visibleCount = 0;
+
+      articles.forEach(article => {
+        const title = article.getAttribute('data-title');
+        const tags = article.getAttribute('data-tags');
+        
+        const matchesSearch = title.includes(currentSearch) || tags.includes(currentSearch);
+        const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter.toLowerCase());
+
+        if (matchesSearch && matchesFilter) {
+          article.style.display = 'block';
+          visibleCount++;
+        } else {
+          article.style.display = 'none';
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+        articleContainer.style.display = 'none';
+      } else {
+        noResults.style.display = 'none';
+        articleContainer.style.display = 'block';
+      }
+    }
+
+    // Search Input Event
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.toLowerCase().trim();
+      filterArticles();
+    });
+
+    // Category Filter Events
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset specific UI
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-[#ca3d2f]', 'text-white');
+          b.classList.add('bg-white', 'text-gray-600');
+        });
+        
+        // Active UI
+        btn.classList.add('bg-[#ca3d2f]', 'text-white');
+        btn.classList.remove('bg-white', 'text-gray-600');
+
+        currentFilter = btn.getAttribute('data-filter');
+        filterArticles();
+      });
+    });
+  });
+</script>
