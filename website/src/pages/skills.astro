@@ -49,10 +49,10 @@ const allSkills = [
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {topPacks.map(pack => (
-          <div class={`copy-trigger cursor-pointer group bg-white rounded-2xl p-6 border transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] ${pack.specialBorder ? 'border-[#ca3d2f] shadow-[0_0_15px_rgba(202,61,47,0.1)]' : 'border-gray-200 shadow-sm'}`} data-command={`npx clawhub install ${pack.id} --auto-confirm`} data-name={`${pack.title} 技能包`}>
+          <button class={`pack-trigger text-left w-full cursor-pointer group bg-white rounded-2xl p-6 border transition-all hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] ${pack.specialBorder ? 'border-[#ca3d2f] shadow-[0_0_15px_rgba(202,61,47,0.1)]' : 'border-gray-200 shadow-sm'}`} data-pack-id={pack.id} data-command={`npx clawhub install ${pack.id} --auto-confirm`} data-name={`${pack.title} 技能包`}>
             <div class="flex justify-between items-start mb-4">
                <div class="text-3xl">{pack.icon}</div>
-               <div class="text-xs font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity">点击复制装载指令 👇</div>
+               <div class="text-xs font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity">点击查看套件详情 👀</div>
             </div>
             
             <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">{pack.title}</h3>
@@ -127,53 +127,217 @@ const allSkills = [
 
   </div>
 
+  <!-- Skill Pack Detail Dialog Modal -->
+  <dialog id="packModal" class="bg-transparent m-auto p-4 w-full max-w-3xl backdrop:bg-gray-900/60 backdrop:backdrop-blur-sm pt-[5vh] lg:pt-[10vh] overflow-visible">
+    <div class="bg-[#fcfcfb] rounded-3xl shadow-2xl overflow-hidden relative border border-gray-100 flex flex-col max-h-[85vh]">
+      <!-- Close Button -->
+      <button id="closeModal" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-900 transition-colors z-20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="px-8 pt-8 pb-6 border-b border-gray-100 bg-white">
+        <div class="flex items-start gap-4 mb-4">
+          <div id="modalIcon" class="text-5xl bg-gray-50 p-3 rounded-2xl border border-gray-100">💼</div>
+          <div>
+            <div class="flex items-center gap-3 mb-1">
+              <h2 id="modalTitle" class="text-2xl font-black text-gray-900">超级助理技能包</h2>
+              <span id="modalConfig" class="px-2 py-0.5 bg-red-50 text-red-600 border border-red-100 rounded text-[11px] font-bold">阿东亲自验证配置</span>
+            </div>
+            <p id="modalDesc" class="text-gray-500 text-[14px] leading-relaxed">你的全能私人助理——邮件、日程、搜索、文档，动动嘴就搞定。</p>
+          </div>
+        </div>
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 border border-yellow-100 text-yellow-700 font-bold text-[13px] rounded-lg w-full">
+          <span>💡</span> <span id="modalStory">真实故事：三万每天监控A股、港股、美股，多维信号分析，交易时段实时推送买卖提醒。</span>
+        </div>
+      </div>
+
+      <!-- Included Skills Content (Scrollable) -->
+      <div class="p-8 overflow-y-auto bg-gray-50 flex-1">
+        <h3 class="text-sm font-black tracking-widest text-[#ca3d2f] mb-4 uppercase flex items-center gap-2">
+          <span>🧩 包含技能</span> <span id="modalCount" class="bg-[#ca3d2f] text-white px-2 py-0.5 rounded-full text-[10px]">4</span>
+        </h3>
+        
+        <div id="modalSkillsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically Injected Skill Cards -->
+        </div>
+      </div>
+
+      <!-- Footer Sticky Copy Actions -->
+      <div class="p-6 bg-white border-t border-gray-100 flex items-center justify-between">
+        <div class="text-[13px] text-gray-500 font-bold">装载后，发送提示词让龙虾自动学会运行流。</div>
+        <button id="modalCopyBtn" class="bg-[#ca3d2f] hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5">
+          <span>点击一键复制全套安装指令</span>
+          <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur-md text-white px-6 py-3.5 rounded-full shadow-2xl z-50 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-8 flex items-center gap-3 font-bold text-[14px] border border-gray-700">
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur-md text-white px-6 py-3.5 rounded-full shadow-2xl z-[100] transition-all duration-300 opacity-0 pointer-events-none transform translate-y-8 flex items-center gap-3 font-bold text-[14px] border border-gray-700">
     <span class="flex items-center justify-center bg-green-500 text-white rounded-full w-5 h-5 text-xs">✓</span>
     <span id="toastMessage">已复制安装指令</span>
   </div>
 </LightLayout>
 
 <script>
+  // 模拟各个技能包所含技能映射数据库
+  const PACK_DB = {
+    'pack-assistant': {
+      story: '不再漏看一封邮件，它会自动把每天早上你醒来之前的重要飞书和邮件整理好，并发早报给你。',
+      skills: ['web-search', 'deep-research', 'weather', 'email-manager', 'docs-action']
+    },
+    'pack-creator': {
+      story: '阿东的小红书起号矩阵，全靠这个爆款引擎支撑。每天全自动拉热点、产出多图文、定时发布。',
+      skills: ['humanize-text', 'wechat-mp', 'twitter-bot', 'xhs-bot', 'web-search', 'deep-research']
+    },
+    'pack-investor': {
+      story: '全网监控海内外资本动态、SEC财报发布瞬间，提取核心数值并对比预期推送到你的桌面上。',
+      skills: ['web-search', 'deep-research', 'twitter-bot', 'code-assistant']
+    },
+    'pack-global': {
+      story: '突破语言屏障，你只管输入中文，它自动转为本土化语系在X平台和海外论坛造势铺量。',
+      skills: ['twitter-bot', 'humanize-text', 'web-search']
+    },
+    'pack-ecommerce': {
+      story: '全天候盯着竞对的新爆款，一旦降价立刻发出警示。还能自己生成商品评论文案引导评价。',
+      skills: ['xhs-bot', 'deep-research', 'docs-action', 'humanize-text']
+    },
+    'pack-dong-matrix': {
+      story: '真·终极赛博印钞机阵列。涵盖从引流、内容制作到接单的所有底座能力，适合极客玩家。',
+      skills: ['core-team', 'web-search', 'deep-research', 'weather', 'email-manager', 'docs-action', 'code-assistant', 'github-manager', 'humanize-text', 'wechat-mp', 'twitter-bot', 'xhs-bot']
+    }
+  };
+
+  // 技能详情映射字典（用于填充Modal）
+  const SKILL_DICT = {
+    'core-team': { icon: "🏗️", title: "多Agent团队配置", desc: "配置多个AI角色协作，总指挥+笔杆子+参谋+运营官。" },
+    'web-search': { icon: "🌐", title: "网页搜索", desc: "Brave搜索+DuckDuckGo双引擎搜索，实时获取网络信息。" },
+    'deep-research': { icon: "🔬", title: "深度研究", desc: "多引擎搜索+网页提取+深度结构化分析报告。" },
+    'weather': { icon: "⛅️", title: "天气查询", desc: "全球天气实时查询，wttr.in + Open-Meteo 双源。" },
+    'email-manager': { icon: "📧", title: "邮件管理", desc: "飞书邮件监控+自动检查+智能回复处理。" },
+    'docs-action': { icon: "📄", title: "文档操作", desc: "跨平台文档读写、知识库管理、多维表格读写控制。" },
+    'code-assistant': { icon: "💻", title: "代码助手", desc: "写代码、改Bug、部署服务器全自动化。直接接管终端。" },
+    'github-manager': { icon: "🐙", title: "GitHub操作", desc: "仓库/Issues/PR/代码搜索/Actions自动化管理。" },
+    'humanize-text': { icon: "🧑‍🦲", title: "AI文本人性化", desc: "16种检测模式防风控，去除AI味。支持多社媒风格。" },
+    'wechat-mp': { icon: "💚", title: "微信公众号", desc: "爆款风格+标题策略+全自动精美排版发布。" },
+    'twitter-bot': { icon: "🐦", title: "Twitter / X", desc: "自动抓取热点发推、刷数据、防封号多账号矩阵。" },
+    'xhs-bot': { icon: "📕", title: "小红书运营", desc: "自动截流、评论引流、养号矩阵。无极并发模式。" }
+  };
+
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Copy to Clipboard Logic
-    const copyTriggers = document.querySelectorAll('.copy-trigger');
+    // 1. Modal Logic for PACKS
+    const packCards = document.querySelectorAll('.pack-trigger');
+    const packModal = document.getElementById('packModal');
+    const closeModal = document.getElementById('closeModal');
+    
+    // Modal Details Elements
+    const mIcon = document.getElementById('modalIcon');
+    const mTitle = document.getElementById('modalTitle');
+    const mDesc = document.getElementById('modalDesc');
+    const mStory = document.getElementById('modalStory');
+    const mCount = document.getElementById('modalCount');
+    const mList = document.getElementById('modalSkillsList');
+    const mCopyBtn = document.getElementById('modalCopyBtn');
+
+    let currentPackCommand = '';
+    let currentPackTitle = '';
+
+    packCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Prevent click if they somehow hit the copy directly (we'll implement one-click from modal)
+        const packId = card.getAttribute('data-pack-id');
+        currentPackCommand = card.getAttribute('data-command');
+        currentPackTitle = card.getAttribute('data-name');
+        
+        const rect = card.getBoundingClientRect();
+        
+        // Populate modal data
+        mIcon.innerText = card.querySelector('.text-3xl').innerText;
+        mTitle.innerText = card.querySelector('h3').innerText;
+        mDesc.innerText = card.querySelector('p').innerText;
+        
+        const dbEntry = PACK_DB[packId];
+        mStory.innerText = dbEntry.story;
+        mCount.innerText = dbEntry.skills.length;
+        
+        // Generate skill HTML
+        mList.innerHTML = dbEntry.skills.map(sId => {
+           const s = SKILL_DICT[sId];
+           return `
+             <div class="bg-white p-4 rounded-xl border border-gray-100 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
+               <div class="text-2xl bg-gray-50 p-2 rounded-lg">${s.icon}</div>
+               <div>
+                 <h4 class="font-bold text-gray-900 text-[14px] mb-1">${s.title}</h4>
+                 <p class="text-[12px] text-gray-500 leading-snug">${s.desc}</p>
+               </div>
+             </div>
+           `;
+        }).join('');
+
+        // Show Modal
+        packModal.showModal();
+        packModal.style.animation = 'modalPopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+       packModal.close();
+    });
+
+    // Close on backdrop click
+    packModal.addEventListener('click', (e) => {
+       if (e.target === packModal) packModal.close();
+    });
+
+    // 2. Advanced Global Toast & Copy Logic
+    const copyTriggers = document.querySelectorAll('.copy-trigger'); // For individual skills
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
     let toastTimeout;
 
+    function showToast(message) {
+        toastMessage.innerHTML = message;
+        toast.classList.remove('opacity-0', 'translate-y-8');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-8');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2500);
+    }
+
+    // Modal Copy Button
+    mCopyBtn.addEventListener('click', async () => {
+       try {
+          await navigator.clipboard.writeText(currentPackCommand);
+          showToast(`已复制 <strong>${currentPackTitle}</strong> 全量包的安装指令`);
+       } catch (err) {
+          console.error('Failed to copy', err);
+       }
+    });
+
+    // Individual Skills Array elements copy
     copyTriggers.forEach(el => {
       el.addEventListener('click', async () => {
         const command = el.getAttribute('data-command');
         const name = el.getAttribute('data-name');
-        
         try {
           await navigator.clipboard.writeText(command);
-          
-          // Show toast
-          toastMessage.innerHTML = `已复制 <strong>${name}</strong> 的安装指令`;
-          toast.classList.remove('opacity-0', 'translate-y-8');
-          toast.classList.add('opacity-100', 'translate-y-0');
-          
-          clearTimeout(toastTimeout);
-          toastTimeout = setTimeout(() => {
-            toast.classList.add('opacity-0', 'translate-y-8');
-            toast.classList.remove('opacity-100', 'translate-y-0');
-          }, 2500);
-
-        } catch (err) {
-          console.error('Failed to copy: ', err);
-        }
+          showToast(`已复制单体技能 <strong>${name}</strong> 的安装指令`);
+        } catch (err) { }
       });
     });
 
-    // 2. Category Filtering Logic
+    // 3. Category Filtering Logic
     const filterBtns = document.querySelectorAll('.filter-btn');
     const skillCards = document.querySelectorAll('.skill-card');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update active button styling
         filterBtns.forEach(b => {
           b.classList.remove('bg-[#ca3d2f]', 'text-white', 'font-bold');
           b.classList.add('bg-white', 'text-gray-600');
@@ -182,7 +346,6 @@ const allSkills = [
         btn.classList.add('bg-[#ca3d2f]', 'text-white', 'font-bold');
         btn.classList.remove('bg-white', 'text-gray-600');
 
-        // Filter cards
         const category = btn.getAttribute('data-category');
         
         skillCards.forEach(card => {
@@ -202,5 +365,16 @@ const allSkills = [
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes modalPopIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  dialog::backdrop {
+    animation: backdropFade 0.3s ease forwards;
+  }
+  @keyframes backdropFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 </style>
