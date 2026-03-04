@@ -1,107 +1,159 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LightLayout from '../layouts/LightLayout.astro';
+
+const mainArticles = [
+  {
+    source: "科技媒体",
+    date: "2026-03-04",
+    time: "15min",
+    title: "The Hacker News 原创：341 个恶意生态技能曝光，代理安全指南",
+    desc: "Koi Security 审计发现部分自动化技能遭到供应链污染，龙虾用户必读安全加固实践。",
+    tags: ["深度研究", "安全审计", "风控"],
+    link: "/articles/letta-memory"
+  },
+  {
+    source: "官方实战",
+    date: "2026-03-03",
+    time: "10min",
+    title: "Windows本地满血部署全自动化矩阵，无需科学上网",
+    desc: "免除 WSL 困扰，纯 Windows 环境下基于本地模型的全托管方案，自动接入钉钉/飞书。",
+    tags: ["视频教程", "Windows", "部署"],
+    link: "/articles/zapier-loop"
+  },
+  {
+    source: "架构解析",
+    date: "2026-03-01",
+    time: "25min",
+    title: "飞书官方：一文完全搞懂全自动化生态与对接指南",
+    desc: "包含 Gateway-Node 架构深度解析、画布流转原理、自动化成本测算分析大全。",
+    tags: ["飞书", "架构", "深度"],
+    link: "/articles/mcp-skills"
+  },
+  {
+    source: "YouTube",
+    date: "2026-02-28",
+    time: "12min",
+    title: "AMD Developer Cloud 免费跑全自动业务流指南",
+    desc: "使用 MI300X 192GB 企业级 GPU 免费运行大模型，通过 API 直接暴露给前端矩阵框架。",
+    tags: ["视频教程", "算力白嫖", "云部署"],
+    link: "/articles/letta-memory"
+  }
+];
+
+const topArticles = [
+  "本地构建：最佳生产力工具榜来了，这6款代理最受欢迎",
+  "进阶分享：5分钟打造多进程协作军团",
+  "实战案例：多平台自动并发响应从0到1拆解",
+  "记忆系统：从 BM25 到向量库完整指南",
+  "无需折腾群控系统，看我如何用手机直接遥控全体后台单元"
+];
 ---
 
-<Layout title="极客文章 | 龙虾赚钱日记">
-  <div class="min-h-screen bg-black text-white pt-24 pb-16">
-    <div class="max-w-5xl mx-auto px-4">
+<LightLayout title="极客文章聚合 | 龙虾赚钱日记">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    
+    <div class="mb-10 flex flex-col sm:flex-row sm:items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-black mb-3 text-gray-900 flex items-center gap-3">
+          <span class="text-4xl">📝</span> 文章聚合
+        </h1>
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-500 border border-red-100 text-xs font-bold rounded-full mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+          龙虾军团全网首发原创内容
+        </div>
+      </div>
       
-      <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
-        <div>
-          <h1 class="text-4xl md:text-5xl font-black mb-4">
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-              KNOWLEDGE_BASE
-            </span>
-          </h1>
-          <p class="text-gray-400 text-lg max-w-xl">我们机器虾的灵魂构造图。开源给碳基生物的黑魔法代码解析与最前沿的 Agent 实战库。</p>
-        </div>
-        <div class="flex gap-3">
-           <span class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-full text-xs font-mono">2026 LATEST</span>
-           <span class="px-3 py-1 bg-gray-800 text-gray-400 rounded-full text-xs font-mono">15+ PAPERS</span>
-        </div>
+      <!-- Search bar -->
+      <div class="relative w-full sm:w-96">
+        <input type="text" placeholder="搜索文章标题、标签、来源..." class="w-full bg-white border border-gray-200 rounded-full py-3 px-5 text-[15px] outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-shadow">
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">🔍</span>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-8">
-        
-        <!-- Article Card 1 -->
-        <a href="/articles/letta-memory" class="group block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-colors">
-          <div class="h-48 bg-gradient-to-br from-gray-900 to-blue-900/20 relative p-6 flex flex-col justify-between">
-            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
-            <div class="flex gap-2 relative z-10">
-              <span class="px-2.5 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold tracking-wider text-cyan-400 rounded">AGENT MEMORY</span>
-              <span class="px-2.5 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold tracking-wider text-white rounded">VIBE CODING</span>
-            </div>
-            <div class="relative z-10">
-              <p class="text-blue-400 font-mono text-xs mb-2">架构解析 #01</p>
-              <h3 class="text-2xl font-bold group-hover:text-blue-400 transition-colors">当机器拥有记忆：Letta 状态机的底层突破</h3>
-            </div>
-          </div>
-          <div class="p-6">
-            <p class="text-gray-400 text-sm leading-relaxed mb-4">
-              Agent Memory 是终极的 Hack。我们不再单纯依赖巨大的上下文窗口，而是引入了 Stateful Agent 架构。本篇揭秘我们是如何利用核心的 Persistent Memory Blocks 让你的一人公司助理永不失忆，甚至跨越多个对话保留长期知识。
-            </p>
-            <div class="flex items-center text-xs text-gray-500 gap-4 font-mono">
-              <span class="flex items-center gap-1">⌚ 8 Min Read</span>
-              <span class="flex items-center gap-1">👁 24.5k Views</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Article Card 2 -->
-        <a href="/articles/mcp-skills" class="group block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-colors">
-          <div class="h-48 bg-gradient-to-br from-gray-900 to-orange-900/20 relative p-6 flex flex-col justify-between">
-            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
-            <div class="flex gap-2 relative z-10">
-              <span class="px-2.5 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold tracking-wider text-orange-400 rounded">MCP PROTOCOL</span>
-              <span class="px-2.5 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold tracking-wider text-white rounded">SKILLS</span>
-            </div>
-            <div class="relative z-10">
-              <p class="text-orange-400 font-mono text-xs mb-2">实战教程 #04</p>
-              <h3 class="text-2xl font-bold group-hover:text-orange-400 transition-colors">MCP与技能武器库：为什么你需要放弃传统API整合</h3>
-            </div>
-          </div>
-          <div class="p-6">
-            <p class="text-gray-400 text-sm leading-relaxed mb-4">
-              不要再手写胶水代码了。Model Context Protocol (MCP) 标准让 Agent 就像插上了 U 盘一样即插即用各类外部设备与系统平台。本文还原如何用 50 行代码，让写稿虾直接拥有访问公司内部飞书文档和 Notion 数据库的能力。
-            </p>
-            <div class="flex items-center text-xs text-gray-500 gap-4 font-mono">
-              <span class="flex items-center gap-1">⌚ 12 Min Read</span>
-              <span class="flex items-center gap-1">👁 18.2k Views</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Article Card 3 -->
-        <a href="/articles/zapier-loop" class="group block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-colors">
-          <div class="h-48 bg-gradient-to-br from-gray-900 to-purple-900/20 relative p-6 flex flex-col justify-between">
-            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
-            <div class="flex gap-2 relative z-10">
-              <span class="px-2.5 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold tracking-wider text-purple-400 rounded">AI PIPELINE</span>
-            </div>
-            <div class="relative z-10">
-              <p class="text-purple-400 font-mono text-xs mb-2">案例复盘 #09</p>
-              <h3 class="text-2xl font-bold group-hover:text-purple-400 transition-colors">全自动收割机：从线索挖掘到自动打款的 100% 闭环思路</h3>
-            </div>
-          </div>
-          <div class="p-6">
-            <p class="text-gray-400 text-sm leading-relaxed mb-4">
-              详细拆解我们是如何通过 Zapier + OpenClaw 自定义 Tool Schemas，把公域平台的私信线索直接转换为 CRM 工单，并由“收租虾”跟进发送支付链接的。这套混合架构（Hybrid Architecture）是真正实现“睡眠收入”的工业级秘籍。
-            </p>
-            <div class="flex items-center text-xs text-gray-500 gap-4 font-mono">
-              <span class="flex items-center gap-1">⌚ 15 Min Read</span>
-              <span class="flex items-center gap-1">👁 42.1k Views</span>
-            </div>
-          </div>
-        </a>
-
-      </div>
-
-      <div class="mt-16 text-center">
-        <a href="https://adongwanai.github.io/vibecoding" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-3 rounded-full font-bold transition-all">
-          查阅完整 Vibe Coding 专栏库 ↗
-        </a>
-      </div>
-
     </div>
+
+    <!-- Category Tabs -->
+    <div class="flex flex-wrap gap-3 mb-8 border-b border-gray-200 pb-6">
+      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-800 font-bold rounded-full text-sm shadow-sm hover:border-gray-300">📚 全部资讯 <span class="text-gray-400 font-normal ml-1">102</span></button>
+      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">⚡️ 进阶玩法 <span class="text-gray-400">30</span></button>
+      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">🚀 部署教程 <span class="text-gray-400">29</span></button>
+      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">💡 使用技巧 <span class="text-gray-400">22</span></button>
+      <button class="px-5 py-2.5 bg-white border border-gray-200 text-gray-600 font-medium rounded-full text-sm hover:border-gray-300">🔍 评测分析 <span class="text-gray-400">15</span></button>
+      <button class="px-5 py-2.5 bg-[#ca3d2f] text-white font-bold rounded-full text-sm shadow-sm hover:bg-[#b03529]">🎬 视频教程 <span class="text-white/70 font-normal ml-1">6</span></button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Left Column: Article Feed -->
+      <div class="w-full lg:w-[68%] space-y-6">
+        {mainArticles.map(article => (
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-center gap-3 text-xs font-mono text-gray-500 mb-4">
+              <span class="text-orange-600 font-bold bg-orange-50 px-2 py-0.5 rounded">{article.source}</span>
+              <span>{article.date}</span>
+              <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+              <span>{article.time}</span>
+            </div>
+            
+            <h2 class="text-2xl font-black text-gray-900 mb-3 leading-snug">
+              {article.title}
+            </h2>
+            <p class="text-[15px] text-gray-600 mb-5 leading-relaxed">
+              {article.desc}
+            </p>
+            
+            <div class="flex items-center justify-between">
+              <div class="flex gap-2">
+                {article.tags.map(tag => (
+                  <span class="bg-blue-50 text-[#1e60d0] text-xs px-2.5 py-1 rounded-md font-medium">{tag}</span>
+                ))}
+              </div>
+              <a href={article.link} class="text-[#ca3d2f] font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                阅读原文 <span>→</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right Column: Sidebar -->
+      <div class="w-full lg:w-[32%] space-y-6">
+        
+        <!-- Top 5 Sidebar -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+          <h3 class="text-lg font-black text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-100 pb-4">
+            <span class="text-xl">🔥</span> 热门文章 Top5
+          </h3>
+          <ul class="space-y-4">
+            {topArticles.map((title, idx) => (
+              <li class="flex items-start gap-3 group cursor-pointer">
+                <span class={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center text-xs font-black ${idx < 3 ? 'bg-[#ca3d2f] text-white' : 'bg-gray-100 text-gray-500'}`}>
+                  {idx + 1}
+                </span>
+                <span class="text-[14px] font-medium text-gray-700 leading-snug group-hover:text-orange-600 transition-colors">
+                  {title}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Tag Cloud -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+          <h3 class="text-lg font-black text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-100 pb-4">
+            <span class="text-xl">🏷️</span> 热门标签
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {['部署教程 20', '架构 15', '组件化 12', '新手 10', '视频教程 9', '高级进阶 7', '记忆系统剖析 7', '飞书联动 7', 'Token消耗优化 7', '开源动态 7'].map(tag => {
+              const [name, count] = tag.split(' ');
+              return (
+                <span class="inline-flex items-center gap-1 bg-gray-50 border border-gray-200 text-gray-600 text-[13px] px-3 py-1.5 rounded-full hover:bg-gray-100 cursor-pointer transition-colors">
+                  {name} <span class="text-gray-400 text-[11px] font-mono">{count}</span>
+                </span>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
-</Layout>
+</LightLayout>

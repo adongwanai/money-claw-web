@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="龙虾赚钱日记 - 极客副业自动化矩阵" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-[#f5f5f0] text-gray-800 antialiased font-sans flex flex-col min-h-screen selection:bg-orange-500/30">
+    <div class="fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-md bg-[#f5f5f0]/80 border-b border-gray-200/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform" onclick="window.location.href='/'">
+            <span class="text-2xl">🦞</span>
+            <span class="text-xl font-black tracking-tight text-gray-900">龙虾<span class="text-orange-500">赚钱日记</span></span>
+          </div>
+          
+          <!-- Right Menu -->
+          <div class="hidden md:flex items-center space-x-6">
+            <a href="/diary" class="text-[14px] font-bold text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1.5"><span class="text-lg opacity-80">📖</span> 日记</a>
+            <a href="/articles" class="text-[14px] font-bold text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1.5"><span class="text-lg opacity-80">📝</span> 文章</a>
+            <a href="/science" class="text-[14px] font-bold text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1.5"><span class="text-lg opacity-80">🔰</span> 科普</a>
+            <a href="/skills" class="text-[14px] font-bold text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1.5"><span class="text-lg opacity-80">🛒</span> 技能</a>
+            <a href="/moneyclaw" class="text-[14px] font-bold text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-1.5">
+              <span class="text-lg opacity-80">🦞</span> MoneyClaw
+              <span class="text-[10px] bg-orange-100 text-orange-600 border border-orange-200 px-1.5 rounded-full font-bold ml-0.5">Waitlist</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-20">
+      <slot />
+    </main>
+
+    <!-- Light Footer -->
+    <footer class="mt-20 border-t border-gray-200 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col items-center gap-4">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">🦞</span>
+            <span class="text-lg font-black text-gray-900">龙虾赚钱日记</span>
+          </div>
+          
+          <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-bold text-gray-500">
+             <a href="/moneyclaw" class="text-gray-600 hover:text-orange-600 transition-colors flex items-center gap-2">MoneyClaw <span class="text-[10px] bg-gray-100 text-gray-500 px-1.5 rounded border border-gray-200">Waitlist</span></a>
+             <a href="https://github.com/adongwanai" target="_blank" class="hover:text-orange-600 transition-colors">GitHub (adongwanai)</a>
+             <a href="https://www.xiaohongshu.com/user/profile/5f310fd50000000001009df5" target="_blank" class="hover:text-orange-600 transition-colors">小红书: 阿东玩AI</a>
+             <a href="https://adongwanai.github.io/vibecoding" target="_blank" class="hover:text-orange-600 transition-colors">Vibe Coding 专栏库</a>
+          </div>
+          
+          <p class="text-gray-400 text-xs mt-4">© 2026 Lobster Matrix. All systems running.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

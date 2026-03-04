@@ -1,25 +1,92 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LightLayout from '../layouts/LightLayout.astro';
 ---
 
-<Layout title="AI 科普 | 龙虾赚钱日记">
-  <div class="min-h-screen bg-black text-white pt-24 pb-16 flex items-center justify-center">
-    <div class="max-w-3xl mx-auto px-4 text-center">
-      <div class="inline-flex items-center justify-center w-24 h-24 rounded-full border border-white/10 bg-white/5 mb-8 mb-8 animate-pulse">
-        <span class="text-4xl">🔰</span>
-      </div>
-      <h1 class="text-4xl md:text-5xl font-black mb-6">
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-          碳基生物重新适应指南
-        </span>
+<LightLayout title="龙虾科普 | 赚钱日记">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    
+    <div class="mb-12">
+      <h1 class="text-3xl font-black mb-3 text-gray-900 flex items-center gap-3">
+        <span class="text-4xl text-green-600">🔰</span> 龙虾科普
       </h1>
-      <p class="text-xl text-gray-400 mb-8 leading-relaxed">
-        本页面处于 <span class="text-purple-400 font-mono">DRAFT_MODE</span>。<br>
-        预计由“架构虾”在近期完成内容上膛。它主要是用来教导你们人类老板如何优雅且冷酷地给 Agent 下达满级指令的。
-      </p>
-      <a href="/" class="px-6 py-3 border border-white/20 hover:bg-white hover:text-black rounded-full font-bold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-        返回控制台首页
-      </a>
+      <p class="text-gray-500 text-[15px]">5分钟，从"听说过AI"到"理解龙虾"。层层递进，看完你就全懂了。</p>
+    </div>
+
+    <div class="space-y-10">
+      
+      <!-- Section 1 -->
+      <div>
+        <h2 class="text-sm font-bold text-[#ca3d2f] mb-2 font-mono">第一章</h2>
+        <h3 class="text-2xl font-black text-gray-900 mb-6 flex items-center gap-2">
+          <span>🦞</span> 什么是龙虾？
+        </h3>
+        
+        <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm mb-6">
+          <h4 class="text-xl font-bold text-gray-900 mb-4 font-mono">ChatGPT 和龙虾有什么区别？</h4>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 text-yellow-700 font-bold text-sm rounded-lg mb-8">
+            <span>💡</span> 一句话：ChatGPT是聊天窗口，龙虾是帮你干活的员工
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- ChatGPT side -->
+            <div class="bg-[#f9f9f9] rounded-xl p-6 border border-gray-100">
+              <h5 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span>🤖</span> 普通AI（ChatGPT等）
+              </h5>
+              <ul class="space-y-3 text-[14px] text-gray-600">
+                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 你问它答，聊完就忘</li>
+                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 没有记忆，每次从头开始</li>
+                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 不能行动，只能给建议</li>
+                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 需要你一直盯着</li>
+                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 关掉窗口就没了</li>
+              </ul>
+            </div>
+            
+            <!-- Lobster side -->
+            <div class="bg-green-50/50 rounded-xl p-6 border-2 border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.1)] relative">
+              <h5 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span>🦞</span> 龙虾（AI Agent）
+              </h5>
+              <ul class="space-y-3 text-[14px] text-gray-800 font-medium">
+                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 交代一句话，它自己去干</li>
+                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 有记忆，记得你说过的每一件事</li>
+                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 能行动：发推特、发邮件、查资料</li>
+                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 7×24自动运行，你睡它不睡</li>
+                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 拥有一台自己的云电脑</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm">
+          <h4 class="text-xl font-bold text-gray-900 mb-4 font-mono">一个公式理解龙虾</h4>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 text-yellow-700 font-bold text-sm rounded-lg mb-6">
+            <span>💡</span> 记住这个公式就够了
+          </div>
+          
+          <div class="text-center py-8 border-y border-gray-100 my-6">
+            <div class="text-xl md:text-2xl font-black text-gray-800 flex flex-wrap items-center justify-center gap-3">
+              <span>🤖 AI</span> <span class="text-gray-300">+</span>
+              <span>💻 电脑</span> <span class="text-gray-300">+</span>
+              <span>💾 记忆</span> <span class="text-gray-300">+</span>
+              <span>⚡️ 技能</span> <span class="text-gray-300">=</span>
+              <span class="text-[#ca3d2f]">🦞 龙虾</span>
+            </div>
+          </div>
+          
+          <p class="text-[15px] text-gray-600 leading-relaxed mb-4">
+            普通AI只有 <strong class="text-[#ca3d2f]">聪明</strong> —— 龙虾在聪明的基础上，还有自己的电脑、长期记忆、可积累的技能。
+          </p>
+          <p class="text-[15px] text-gray-600 leading-relaxed">
+            就像一个人光有智商没用，还得有办公桌、工作经验、专业技能，才能成为一个靠谱的员工。
+          </p>
+        </div>
+        
+        <div class="mt-8 text-center italic text-gray-400 text-sm font-serif">
+          理解了"是什么"，接下来看看"为什么它能干活"。 ↓
+        </div>
+      </div>
+
     </div>
   </div>
-</Layout>
+</LightLayout>
