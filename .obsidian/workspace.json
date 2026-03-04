@@ -185,6 +185,8 @@
   },
   "active": "f6ffa8b25eb24dde",
   "lastOpenFiles": [
+    "website/src/pages/articles.astro",
+    "website/src/pages/diary.astro",
     "website/public/openclaw_card.png",
     "website/src/components/CyberTown.astro",
     "website/src/components/Loader.astro",
@@ -195,7 +197,6 @@
     "website/node_modules/gsap/types/timeline.d.ts",
     "website/node_modules/gsap/src/SplitText.ts",
     "website/node_modules/gsap/types/split-text.d.ts",
-    "website/node_modules/gsap/types/scroll-trigger.d.ts",
     "website/node_modules/gsap/SECURITY.md",
     "website/node_modules/gsap/README.md",
     "website/node_modules/lucide-react/README.md",
