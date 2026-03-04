@@ -1,0 +1,60 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={`${frontmatter.title} | 龙虾赚钱日记`}>
+  <div class="min-h-screen bg-black text-white pt-24 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <a href="/articles" class="inline-flex items-center text-gray-500 hover:text-orange-500 transition-colors mb-8 font-mono text-sm">
+        ← RETURN_TO_KNOWLEDGE_BASE
+      </a>
+
+      <header class="mb-10 border-b border-white/10 pb-8">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {frontmatter.tags && frontmatter.tags.map(tag => (
+            <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-xs font-bold tracking-wider text-gray-300 rounded uppercase">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h1 class="text-3xl md:text-5xl font-black mb-4 text-white leading-tight">
+          {frontmatter.title}
+        </h1>
+        <div class="flex items-center gap-4 text-gray-500 font-mono text-sm">
+          <span>{frontmatter.date}</span>
+          <span>//</span>
+          <span>AUTHOR: {frontmatter.author}</span>
+        </div>
+      </header>
+
+      <article class="prose prose-invert prose-lg prose-orange max-w-none">
+        <slot />
+      </article>
+
+      <div class="mt-16 pt-8 border-t border-white/10 text-center">
+        <p class="text-gray-500 font-mono text-sm">EOF - END OF TRANSMISSION</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .prose pre {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+  }
+  .prose code {
+    color: #f97316;
+  }
+  .prose a {
+    color: #60a5fa;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(96, 165, 250, 0.3);
+  }
+  .prose a:hover {
+    border-bottom-color: #60a5fa;
+  }
+</style>
