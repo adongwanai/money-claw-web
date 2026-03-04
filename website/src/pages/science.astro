@@ -3,90 +3,444 @@ import LightLayout from '../layouts/LightLayout.astro';
 ---
 
 <LightLayout title="龙虾科普 | 赚钱日记">
-  <div class="max-w-4xl mx-auto px-4 py-12">
+  <div class="max-w-7xl mx-auto px-4 py-8 md:py-12 relative flex flex-col md:flex-row gap-8 lg:gap-12">
     
-    <div class="mb-12">
-      <h1 class="text-3xl font-black mb-3 text-gray-900 flex items-center gap-3">
-        <span class="text-4xl text-green-600">🔰</span> 龙虾科普
-      </h1>
-      <p class="text-gray-500 text-[15px]">5分钟，从"听说过AI"到"理解龙虾"。层层递进，看完你就全懂了。</p>
-    </div>
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 order-2 md:order-1 hidden md:block">
+      <div class="sticky top-28 bg-white/50 backdrop-blur-sm p-5 rounded-2xl border border-gray-100 shadow-sm">
+        
+        <!-- Progress Indicator -->
+        <div class="mb-8">
+           <div class="flex justify-between items-center mb-2">
+             <span class="text-xs font-black text-gray-800 uppercase tracking-widest">5分钟速成进度</span>
+             <span id="progressText" class="text-xs font-bold text-[#ca3d2f]">0%</span>
+           </div>
+           <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+              <div id="progressBar" class="bg-[#ca3d2f] h-1.5 rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
+           </div>
+        </div>
+        
+        <!-- Table of Contents -->
+        <nav class="space-y-1 border-l-2 border-gray-100 pl-4" id="toc">
+           <a href="#chapter-1" class="toc-link block py-2 text-[14px] font-bold text-gray-400 hover:text-gray-900 transition-colors" data-target="chapter-1">1. 什么是龙虾？</a>
+           <a href="#chapter-2" class="toc-link block py-2 text-[14px] font-bold text-gray-400 hover:text-gray-900 transition-colors" data-target="chapter-2">2. 龙虾能干什么？</a>
+           <a href="#chapter-3" class="toc-link block py-2 text-[14px] font-bold text-gray-400 hover:text-gray-900 transition-colors" data-target="chapter-3">3. 怎么养一只龙虾？</a>
+           <a href="#chapter-4" class="toc-link block py-2 text-[14px] font-bold text-gray-400 hover:text-gray-900 transition-colors" data-target="chapter-4">4. 团队怎么组建？</a>
+           <a href="#chapter-5" class="toc-link block py-2 text-[14px] font-bold text-gray-400 hover:text-gray-900 transition-colors" data-target="chapter-5">5. 怎么用龙虾赚钱？</a>
+        </nav>
+      </div>
+    </aside>
 
-    <div class="space-y-10">
+    <!-- Main Content -->
+    <main class="flex-1 order-1 md:order-2 pb-32">
       
-      <!-- Section 1 -->
-      <div>
-        <h2 class="text-sm font-bold text-[#ca3d2f] mb-2 font-mono">第一章</h2>
-        <h3 class="text-2xl font-black text-gray-900 mb-6 flex items-center gap-2">
-          <span>🦞</span> 什么是龙虾？
-        </h3>
-        
-        <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm mb-6">
-          <h4 class="text-xl font-bold text-gray-900 mb-4 font-mono">ChatGPT 和龙虾有什么区别？</h4>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 text-yellow-700 font-bold text-sm rounded-lg mb-8">
-            <span>💡</span> 一句话：ChatGPT是聊天窗口，龙虾是帮你干活的员工
-          </div>
-          
-          <div class="grid md:grid-cols-2 gap-6">
-            <!-- ChatGPT side -->
-            <div class="bg-[#f9f9f9] rounded-xl p-6 border border-gray-100">
-              <h5 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span>🤖</span> 普通AI（ChatGPT等）
-              </h5>
-              <ul class="space-y-3 text-[14px] text-gray-600">
-                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 你问它答，聊完就忘</li>
-                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 没有记忆，每次从头开始</li>
-                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 不能行动，只能给建议</li>
-                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 需要你一直盯着</li>
-                <li class="flex items-start gap-2"><span class="text-gray-400">•</span> 关掉窗口就没了</li>
-              </ul>
-            </div>
-            
-            <!-- Lobster side -->
-            <div class="bg-green-50/50 rounded-xl p-6 border-2 border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.1)] relative">
-              <h5 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span>🦞</span> 龙虾（AI Agent）
-              </h5>
-              <ul class="space-y-3 text-[14px] text-gray-800 font-medium">
-                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 交代一句话，它自己去干</li>
-                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 有记忆，记得你说过的每一件事</li>
-                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 能行动：发推特、发邮件、查资料</li>
-                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 7×24自动运行，你睡它不睡</li>
-                <li class="flex items-start gap-2"><span class="text-green-500">•</span> 拥有一台自己的云电脑</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-sm">
-          <h4 class="text-xl font-bold text-gray-900 mb-4 font-mono">一个公式理解龙虾</h4>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 text-yellow-700 font-bold text-sm rounded-lg mb-6">
-            <span>💡</span> 记住这个公式就够了
-          </div>
-          
-          <div class="text-center py-8 border-y border-gray-100 my-6">
-            <div class="text-xl md:text-2xl font-black text-gray-800 flex flex-wrap items-center justify-center gap-3">
-              <span>🤖 AI</span> <span class="text-gray-300">+</span>
-              <span>💻 电脑</span> <span class="text-gray-300">+</span>
-              <span>💾 记忆</span> <span class="text-gray-300">+</span>
-              <span>⚡️ 技能</span> <span class="text-gray-300">=</span>
-              <span class="text-[#ca3d2f]">🦞 龙虾</span>
-            </div>
-          </div>
-          
-          <p class="text-[15px] text-gray-600 leading-relaxed mb-4">
-            普通AI只有 <strong class="text-[#ca3d2f]">聪明</strong> —— 龙虾在聪明的基础上，还有自己的电脑、长期记忆、可积累的技能。
-          </p>
-          <p class="text-[15px] text-gray-600 leading-relaxed">
-            就像一个人光有智商没用，还得有办公桌、工作经验、专业技能，才能成为一个靠谱的员工。
-          </p>
-        </div>
-        
-        <div class="mt-8 text-center italic text-gray-400 text-sm font-serif">
-          理解了"是什么"，接下来看看"为什么它能干活"。 ↓
-        </div>
+      <div class="mb-12">
+        <h1 class="text-3xl md:text-4xl font-black mb-4 text-gray-900 flex items-center gap-3">
+          <span class="text-5xl text-green-600 drop-shadow-sm">🔰</span> 龙虾速成指南
+        </h1>
+        <p class="text-gray-500 text-[16px] leading-relaxed max-w-2xl">
+          如果你还把 AI 当作聊天框，那你注定是被收割的一方。<br/>
+          花 5 分钟看完这份指南，带你从“听说过”跨越到“拥有自己的一人军团”。
+        </p>
       </div>
 
-    </div>
+      <div class="space-y-24">
+        
+        <!-- Chapter 1 -->
+        <section id="chapter-1" class="scroll-mt-32 chapter-section">
+          <div class="mb-8">
+            <h2 class="text-sm font-black tracking-widest text-[#ca3d2f] mb-3 uppercase">Chapter 1</h2>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900">什么是龙虾？</h3>
+          </div>
+          
+          <div class="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-sm mb-6">
+            <h4 class="text-lg font-black text-gray-900 mb-6">ChatGPT 和龙虾的区别</h4>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-50 text-yellow-700 font-bold text-[13px] rounded-lg mb-8">
+              <span>💡</span> 一句话：ChatGPT是聊天框，龙虾是帮你干活的牛马员工
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- ChatGPT side -->
+              <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                <h5 class="font-bold text-gray-500 mb-5 flex items-center gap-2">
+                  <span>🤖</span> 普通AI (ChatGPT等)
+                </h5>
+                <ul class="space-y-4 text-[14px] text-gray-500">
+                  <li class="flex items-start gap-2"><span class="text-gray-300 text-lg leading-none">•</span> 你问它答，聊完就忘</li>
+                  <li class="flex items-start gap-2"><span class="text-gray-300 text-lg leading-none">•</span> 没有记忆，每次从头开始</li>
+                  <li class="flex items-start gap-2"><span class="text-gray-300 text-lg leading-none">•</span> 不能行动，只能给建议</li>
+                  <li class="flex items-start gap-2"><span class="text-gray-300 text-lg leading-none">•</span> 需要你一直盯着它打字</li>
+                </ul>
+              </div>
+              
+              <!-- Lobster side -->
+              <div class="bg-green-50/30 rounded-2xl p-6 border-2 border-green-400 shadow-[0_0_20px_rgba(34,197,94,0.1)] relative">
+                <h5 class="font-black text-gray-900 mb-5 flex items-center gap-2">
+                  <span>🦞</span> 龙虾 (AI Agent)
+                </h5>
+                <ul class="space-y-4 text-[14px] text-gray-800 font-medium">
+                  <li class="flex items-start gap-2"><span class="text-green-500 text-lg leading-none">✓</span> 交代目标，它自动拆解并干活</li>
+                  <li class="flex items-start gap-2"><span class="text-green-500 text-lg leading-none">✓</span> 拥有长期向量记忆，认识你的客户</li>
+                  <li class="flex items-start gap-2"><span class="text-green-500 text-lg leading-none">✓</span> 能发推、写邮件、查数据并自己点击</li>
+                  <li class="flex items-start gap-2"><span class="text-green-500 text-lg leading-none">✓</span> 7×24托管运行，你睡觉它收钱</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-sm">
+            <h4 class="text-lg font-black text-gray-900 mb-6">一条极客世界的黄金配置公式</h4>
+            
+            <div class="text-center py-10 bg-gray-50 rounded-2xl border border-gray-100 my-6">
+              <div class="text-xl md:text-2xl lg:text-3xl font-black text-gray-800 flex flex-wrap items-center justify-center gap-2 md:gap-4">
+                <span class="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">🤖 AI大脑</span> <span class="text-gray-300">+</span>
+                <span class="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">💻 独立系统</span> <span class="text-gray-300">+</span>
+                <span class="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">💾 记忆锚底</span> <span class="text-gray-300">+</span>
+                <span class="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">⚡️ 工具库</span> <span class="text-gray-300">=</span>
+                <span class="text-white bg-[#ca3d2f] px-4 py-1.5 rounded-lg shadow-md tracking-widest">🦞 龙虾</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chapter 2 -->
+        <section id="chapter-2" class="scroll-mt-32 chapter-section">
+          <div class="mb-8">
+            <h2 class="text-sm font-black tracking-widest text-[#ca3d2f] mb-3 uppercase">Chapter 2</h2>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900">龙虾能干什么？</h3>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform">
+              <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5">📝</div>
+              <h4 class="font-black text-gray-900 mb-3 text-lg">内容全自动养号</h4>
+              <p class="text-[14px] text-gray-500 leading-relaxed mb-4">自动抓取外网热点，重写排版，定时多账号分发到小红书、公众号和推特，批量培育私域流量池。</p>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[11px] rounded font-mono">#脚本生成</span>
+                <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[11px] rounded font-mono">#矩阵操作</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform">
+              <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-5">📊</div>
+              <h4 class="font-black text-gray-900 mb-3 text-lg">暗网与宏观数据监控</h4>
+              <p class="text-[14px] text-gray-500 leading-relaxed mb-4">7x24小时刺探竞品价格，监控行业舆情。一旦特定关键词或商机出现，立刻在飞书/钉钉发警报推给你。</p>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[11px] rounded font-mono">#价格爬虫</span>
+                <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[11px] rounded font-mono">#商机截流</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:-translate-y-1 transition-transform">
+              <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-5">🤖</div>
+              <h4 class="font-black text-gray-900 mb-3 text-lg">销售闭环与智能客服</h4>
+              <p class="text-[14px] text-gray-500 leading-relaxed mb-4">通过 MCP 对接微信，自动识别恶意砍价，并抛出话术截流；客户付款后自动调用发货接口，完成纯躺赚。</p>
+              <div class="flex flex-wrap gap-2 mt-auto">
+                <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[11px] rounded font-mono">#全托管</span>
+                <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[11px] rounded font-mono">#私域成交</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chapter 3 -->
+        <section id="chapter-3" class="scroll-mt-32 chapter-section">
+          <div class="mb-8">
+            <h2 class="text-sm font-black tracking-widest text-[#ca3d2f] mb-3 uppercase">Chapter 3</h2>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900">怎么养一只龙虾？</h3>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-sm mb-8">
+            <h4 class="font-black text-gray-900 mb-8 border-b border-gray-100 pb-4">五步极简克隆法</h4>
+            
+            <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+              
+              <!-- Timeline Item 1 -->
+              <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-200 text-gray-500 font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 group-[.is-active]:bg-[#ca3d2f] group-[.is-active]:text-white z-10">1</div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                  <h5 class="font-bold text-gray-900">准备云主机 (服务器池)</h5>
+                  <p class="text-[13px] text-gray-500 mt-2">购买一台低配的 Linux 服务器 (2核4G足矣)，它是你龙虾休眠和工作的赛博领地。</p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 2 -->
+              <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-200 text-gray-500 font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 group-[.is-active]:bg-[#ca3d2f] group-[.is-active]:text-white z-10">2</div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                  <h5 class="font-bold text-gray-900">配置底层母体 (Docker)</h5>
+                  <p class="text-[13px] text-gray-500 mt-2">一行代码部署隔离环境：<code>apt install docker</code>，保证所有的 Agent 不会互相“打架”抢资源。</p>
+                </div>
+              </div>
+              
+              <!-- Timeline Item 3 -->
+              <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-200 text-gray-500 font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 group-[.is-active]:bg-[#ca3d2f] group-[.is-active]:text-white z-10">3</div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                  <h5 class="font-bold text-gray-900">注入灵魂 (API/模型)</h5>
+                  <p class="text-[13px] text-gray-500 mt-2">获取大模型的 API Key。不管是 DeepSeek、阿里通义还是 Claude，喂给它作为核心大脑引擎。</p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 4 -->
+              <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-200 text-gray-500 font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 group-[.is-active]:bg-[#ca3d2f] group-[.is-active]:text-white z-10">4</div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                  <h5 class="font-bold text-gray-900">拉取龙虾镜像 (Pull)</h5>
+                  <p class="text-[13px] text-gray-500 mt-2">使用团队定制的 <code>docker pull xxxx</code>，一键将架构虾、客服虾等核心包下载到本地。</p>
+                </div>
+              </div>
+
+              <!-- Timeline Item 5 -->
+              <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gray-200 text-gray-500 font-black shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 group-[.is-active]:bg-[#ca3d2f] group-[.is-active]:text-white z-10">5</div>
+                <div class="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] bg-[#ca3d2f]/5 p-5 rounded-2xl border border-[#ca3d2f]/20">
+                  <h5 class="font-bold text-[#ca3d2f]">无情点火启动！</h5>
+                  <p class="text-[13px] text-gray-600 mt-2">后台执行 <code>up -d</code>！你的数字工人矩阵即刻苏醒，根据预设定的定时任务开始全网抓取利润。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- FAQ Section -->
+          <div class="space-y-3">
+             <details class="group bg-white rounded-2xl border border-gray-100 [&_summary::-webkit-details-marker]:hidden">
+               <summary class="flex items-center justify-between p-5 font-bold text-gray-900 cursor-pointer">
+                 不会敲代码也能养吗？
+                 <span class="transition group-open:rotate-45 text-gray-400 text-xl">+</span>
+               </summary>
+               <div class="px-5 pb-5 text-[14px] text-gray-500 leading-relaxed border-t border-gray-50 pt-4 mt-1">
+                 完全可以。只要你会复制粘贴终端命令，或者使用宝塔面板的 Docker 管理可视化界面，10 分钟即可完成部署。所有的复杂环境都被我们隔离在容器内部了。
+               </div>
+             </details>
+             <details class="group bg-white rounded-2xl border border-gray-100 [&_summary::-webkit-details-marker]:hidden">
+               <summary class="flex items-center justify-between p-5 font-bold text-gray-900 cursor-pointer">
+                 养这套系统每个月花多少钱？
+                 <span class="transition group-open:rotate-45 text-gray-400 text-xl">+</span>
+               </summary>
+               <div class="px-5 pb-5 text-[14px] text-gray-500 leading-relaxed border-t border-gray-50 pt-4 mt-1">
+                 极其便宜。一台基础服务器 20元/月，大脑（以 DeepSeek V3 API 为例，价格极低）跑满全负荷一天的接客调度费用不超过 1 块钱。你的员工成本几乎为 0。
+               </div>
+             </details>
+          </div>
+        </section>
+
+        <!-- Chapter 4 -->
+        <section id="chapter-4" class="scroll-mt-32 chapter-section">
+          <div class="mb-8">
+            <h2 class="text-sm font-black tracking-widest text-[#ca3d2f] mb-3 uppercase">Chapter 4</h2>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900">龙虾团队怎么组建？</h3>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 md:p-8 border border-gray-100 shadow-sm mb-8">
+            <p class="text-[15px] text-gray-600 mb-8 border-l-4 border-[#ca3d2f] pl-4 font-medium">永远不要指望一个全能的 Agent 解决所有问题。阿东的战术是：极度垂直，分工协作。</p>
+
+            <!-- Collaboration Flow Diagram -->
+            <div class="flex flex-col md:flex-row items-center justify-between bg-gray-50 rounded-2xl p-6 border border-gray-100 mb-10 text-center gap-4">
+              <div class="flex-1">
+                 <div class="font-black text-gray-900 text-lg mb-1">① 任务下发</div>
+                 <div class="text-[12px] text-gray-400">总监虾切割总目标</div>
+              </div>
+              <div class="hidden md:block text-gray-300">➡️</div>
+              <div class="flex-1">
+                 <div class="font-black text-[#ca3d2f] text-lg mb-1">② 分工执行</div>
+                 <div class="text-[12px] text-[#ca3d2f]/70">笔杆/客服/安保虾各司其职</div>
+              </div>
+              <div class="hidden md:block text-gray-300">➡️</div>
+              <div class="flex-1">
+                 <div class="font-black text-gray-900 text-lg mb-1">③ 结果落袋</div>
+                 <div class="text-[12px] text-gray-400">财务虾统计毛利通知老板</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <!-- Cards for 8 roles -->
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                <div class="text-3xl mb-2">🎯</div>
+                <div class="font-bold text-gray-900 text-[14px]">总监虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">统筹全局，分配打金</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                <div class="text-3xl mb-2">✍️</div>
+                <div class="font-bold text-gray-900 text-[14px]">笔杆虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">爆款内容极速流水线</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                <div class="text-3xl mb-2">🏗️</div>
+                <div class="font-bold text-gray-900 text-[14px]">架构虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">Vibe Coding主力建站</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                <div class="text-3xl mb-2">💬</div>
+                <div class="font-bold text-gray-900 text-[14px]">客服虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">7×24话术催单逼单</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                <div class="text-3xl mb-2">📈</div>
+                <div class="font-bold text-gray-900 text-[14px]">运营虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">多账号起量与涨粉策略</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center">
+                <div class="text-3xl mb-2">🔍</div>
+                <div class="font-bold text-gray-900 text-[14px]">侦察虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">监控对手价格与商机</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center border-b-2 border-b-green-400">
+                <div class="text-3xl mb-2">💰</div>
+                <div class="font-bold text-green-700 text-[14px]">财务虾</div>
+                <div class="text-[11px] text-gray-500 mt-1">对账与利润收益核算</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 text-center border-b-2 border-b-[#ca3d2f]">
+                <div class="text-3xl mb-2">🛡️</div>
+                <div class="font-bold text-[#ca3d2f] text-[14px]">安保虾</div>
+                <div class="text-[11px] text-[#ca3d2f]/70 mt-1">动态IP代理与防平台风控</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chapter 5 -->
+        <section id="chapter-5" class="scroll-mt-32 chapter-section">
+          <div class="mb-8">
+            <h2 class="text-sm font-black tracking-widest text-[#ca3d2f] mb-3 uppercase">Chapter 5</h2>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900">怎么用它躺赚变现？</h3>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <!-- ROI Calculator -->
+            <div class="bg-gray-900 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+               <div class="absolute top-0 right-0 p-4 opacity-10 font-mono text-6xl font-black text-white pointer-events-none">ROI%</div>
+               <h4 class="text-white font-black text-xl mb-6 flex items-center gap-2">🕹️ 极客杠杆计算器</h4>
+               
+               <div class="space-y-5">
+                 <div>
+                   <label class="text-gray-400 text-xs font-bold uppercase tracking-widest block mb-2">每月 API 调用成本 (元)</label>
+                   <input type="range" id="apiCost" min="10" max="500" value="50" class="w-full accent-[#ca3d2f] h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                   <div class="text-right text-gray-300 font-mono text-sm mt-1" id="apiCostVal">¥ 50</div>
+                 </div>
+                 
+                 <div>
+                   <label class="text-gray-400 text-xs font-bold uppercase tracking-widest block mb-2">龙虾产生的客单毛利 (元)</label>
+                   <input type="range" id="orderProfit" min="5" max="300" value="45" class="w-full accent-[#ca3d2f] h-1.5 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                   <div class="text-right text-gray-300 font-mono text-sm mt-1" id="orderProfitVal">¥ 45</div>
+                 </div>
+
+                 <div class="pt-4 mt-6 border-t border-gray-800">
+                    <div class="flex justify-between items-end">
+                      <div class="text-gray-500 font-bold text-sm">预估自动月平仓：</div>
+                      <div class="text-green-400 font-black text-3xl font-mono" id="totalROI">¥ 6,750</div>
+                    </div>
+                    <div class="text-[11px] text-gray-600 text-right mt-1">* 依据保守的日均成单转化模型计算</div>
+                 </div>
+               </div>
+            </div>
+
+            <!-- Path Cards -->
+            <div class="space-y-4">
+              <div class="bg-white p-5 rounded-2xl border border-gray-100 flex gap-4 items-start shadow-sm">
+                 <div class="bg-blue-50 text-blue-600 p-3 rounded-xl">01</div>
+                 <div>
+                   <h5 class="font-black text-gray-900 text-[15px] mb-1">内容全案代挂机</h5>
+                   <p class="text-[13px] text-gray-500">承接厂商品牌词覆盖，用矩阵疯狂铺设软文，按阅读量与私域转化率收取代运营费用。</p>
+                 </div>
+              </div>
+              <div class="bg-white p-5 rounded-2xl border border-gray-100 flex gap-4 items-start shadow-sm">
+                 <div class="bg-orange-50 text-orange-600 p-3 rounded-xl">02</div>
+                 <div>
+                   <h5 class="font-black text-gray-900 text-[15px] mb-1">差价信息隔离搬砖</h5>
+                   <p class="text-[13px] text-gray-500">左手侦察虾监控海外/暗网低价源码或工具池，右手客服虾在闲鱼自动加价50%卖出无本万利。</p>
+                 </div>
+              </div>
+              <div class="bg-white p-5 rounded-2xl border border-gray-100 flex gap-4 items-start shadow-sm">
+                 <div class="bg-purple-50 text-purple-600 p-3 rounded-xl">03</div>
+                 <div>
+                   <h5 class="font-black text-gray-900 text-[15px] mb-1">贩卖武器库 (SaaS)</h5>
+                   <p class="text-[13px] text-gray-500">你自己跑通的稳定打金线路，打包成专有技能包出售给别的淘金客（铲子理论）。</p>
+                 </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Complete Actions -->
+          <div class="text-center p-10 bg-green-50 rounded-3xl border border-green-100">
+            <div class="text-4xl mb-4">🎉</div>
+            <h3 class="text-2xl font-black text-gray-900 mb-3">5 分钟科普完毕！</h3>
+            <p class="text-gray-600 text-[15px] mb-8 max-w-lg mx-auto">你现在已经超越了 99% 还在发推特求提示词的初学者。拔掉你的外包开发团队的网络线吧，去看看龙虾超市里有什么现成的好货。</p>
+            <a href="/skills" class="inline-block bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 px-10 rounded-full transition-transform hover:-translate-y-1 shadow-lg">
+              前往技能克隆营 →
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
   </div>
 </LightLayout>
+
+<script>
+  // Dynamic ROI Calculator
+  document.addEventListener('DOMContentLoaded', () => {
+    const apiCost = document.getElementById('apiCost');
+    const orderProfit = document.getElementById('orderProfit');
+    const apiCostVal = document.getElementById('apiCostVal');
+    const orderProfitVal = document.getElementById('orderProfitVal');
+    const totalROI = document.getElementById('totalROI');
+
+    function calculateROI() {
+      const api = parseInt(apiCost.value);
+      const profit = parseInt(orderProfit.value);
+      
+      apiCostVal.innerText = `¥ ${api}`;
+      orderProfitVal.innerText = `¥ ${profit}`;
+      
+      // Magic mockup formula: Total Revenue = (API spent * 3 daily interaction efficiency) * Profit - API Cost
+      const revenue = (api * 3) * profit - api;
+      totalROI.innerText = `¥ ${revenue.toLocaleString()}`;
+    }
+
+    apiCost.addEventListener('input', calculateROI);
+    orderProfit.addEventListener('input', calculateROI);
+    calculateROI();
+    
+    // Scroll Spy & Progress Bar Logic
+    const sections = document.querySelectorAll('.chapter-section');
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+
+    function onScroll() {
+      let current = '';
+      const offset = 200; // Trigger line
+      
+      sections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= (top - offset)) {
+          current = sec.getAttribute('id');
+        }
+      });
+      
+      // Calculate total progress
+      const scrollPosition = window.scrollY;
+      const totalHeight = document.body.scrollHeight - window.innerHeight;
+      const progressPercent = Math.min(100, Math.max(0, (scrollPosition / totalHeight) * 100));
+      
+      progressBar.style.width = `${progressPercent}%`;
+      progressText.innerText = `${Math.round(progressPercent)}%`;
+
+      // Update Navigation styling
+      tocLinks.forEach(link => {
+        link.classList.remove('text-[#ca3d2f]', 'font-black');
+        link.classList.add('text-gray-400', 'font-bold');
+        if (link.dataset.target === current) {
+          link.classList.remove('text-gray-400', 'font-bold');
+          link.classList.add('text-[#ca3d2f]', 'font-black');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Trigger once on load
+    onScroll();
+  });
+</script>
