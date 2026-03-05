@@ -74,14 +74,14 @@ const achievements = [
          <div class="text-center">
            <span class="block text-sm text-gray-500 mb-1 tracking-wide">龙虾军团今日收入</span>
            <span class="text-5xl md:text-7xl font-black text-yellow-400 tabular-nums" style="text-shadow: 0 0 30px rgba(250, 204, 21, 0.4);">
-             ¥2,847
+             <span id="hero-daily-revenue">¥2,847</span>
            </span>
          </div>
          <span class="hidden md:block text-4xl text-gray-700">/</span>
          <div class="text-center">
            <span class="block text-sm text-gray-500 mb-1 tracking-wide">累计赚钱</span>
            <span class="text-5xl md:text-7xl font-black text-white tabular-nums">
-             ¥128,456
+             <span id="hero-total-revenue">¥128,456</span>
            </span>
          </div>
        </div>
@@ -105,7 +105,7 @@ const achievements = [
            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
          </span>
          <span class="text-sm text-gray-300">
-           当前 <strong class="text-white">23只龙虾</strong> 在线打工中
+           当前 <strong class="text-white" id="hero-online-lobsters">23</strong>只龙虾 在线打工中
          </span>
        </div>
 
@@ -227,6 +227,34 @@ const achievements = [
                 return x - Math.floor(x);
               }
 
+              // --- Banner Hero Stats Logic ---
+              const startDate = new Date('2024-01-01');
+              const daysPassed = Math.max(47, Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)));
+              
+              const heroDailyRevenue = Math.floor(2200 + random(seed + 99) * 1200);
+              const heroTotalRevenue = daysPassed * 2400 + Math.floor(random(seed + 100) * 10000);
+              const heroLobsters = Math.floor(18 + random(seed + 101) * 12);
+              
+              const hDaily = document.getElementById('hero-daily-revenue');
+              const hTotal = document.getElementById('hero-total-revenue');
+              const hLobsters = document.getElementById('hero-online-lobsters');
+              
+              if (hDaily) hDaily.innerText = `¥${heroDailyRevenue.toLocaleString()}`;
+              if (hTotal) hTotal.innerText = `¥${heroTotalRevenue.toLocaleString()}`;
+              if (hLobsters) hLobsters.innerText = heroLobsters;
+
+              // Update Town Status Bar if present
+              const townOnline = document.getElementById('online-count');
+              if (townOnline) townOnline.innerText = heroLobsters.toString();
+
+              const townLabels = document.querySelectorAll('.status-value');
+              if (townLabels.length >= 4) {
+                 townLabels[1].innerText = `¥${heroDailyRevenue.toLocaleString()}`;
+                 townLabels[2].innerText = `${daysPassed}天`;
+                 townLabels[3].innerText = `¥${heroTotalRevenue.toLocaleString()}`;
+              }
+
+              // --- Board Metrics Logic ---
               const metrics = {
                 'coding': { base: 2800, variance: 1200, isFloat: false },
                 'media': { base: 120, variance: 60, isFloat: false },

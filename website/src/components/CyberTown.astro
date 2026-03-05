@@ -842,10 +842,24 @@ if (typeof window !== "undefined") {
     }, 2000);
   }
 
+  // 龙虾状态池 (引入真实的不稳定因素)
+  const statusPool = [
+    { type: 'working', label: '' },
+    { type: 'working', label: '' },
+    { type: 'working', label: '' },
+    { type: 'working', label: '' },
+    { type: 'working', label: '' },
+    { type: 'sick', label: '🤒 赛博感冒(Bug修复中)' },
+    { type: 'sleeping', label: '💤 算力耗尽休眠中' },
+    { type: 'warning', label: '⚠️ API触发频控罢工' }
+  ];
+
   function createLobster(container: HTMLElement, index: number) {
     const type = lobsterTypes[index % lobsterTypes.length];
+    const status = statusPool[Math.floor(Math.random() * statusPool.length)];
     const lobster = document.createElement('div');
     lobster.className = 'lobster';
+    lobster.dataset.status = status.type;
 
     // 随机初始位置
     const startX = 10 + Math.random() * 75;
@@ -855,19 +869,34 @@ if (typeof window !== "undefined") {
     lobster.style.left = `${startX}%`;
     lobster.style.bottom = `${startY}%`;
 
+    const isSick = status.type !== 'working';
+    const filterStyle = isSick ? 'filter: grayscale(100%) sepia(50%) hue-rotate(-50deg); opacity: 0.6;' : '';
+
     lobster.innerHTML = `
-      <div class="lobster-action" id="action-${index}"></div>
-      <div class="lobster-name">${type.name}</div>
-      <div class="lobster-emoji">🦞</div>
+      <div class="lobster-action" id="action-${index}">${status.label}</div>
+      <div class="lobster-name" style="${isSick ? 'color: #ef4444; border-color: #ef4444;' : ''}">${type.name}</div>
+      <div class="lobster-emoji" style="${filterStyle}">🦞</div>
     `;
 
     container.appendChild(lobster);
 
     // Give it a brief delay before starting interaction
-    setTimeout(() => { animateLobster(lobster); }, Math.random() * 2000);
+    setTimeout(() => { animateLobster(lobster, isSick); }, Math.random() * 2000);
   }
 
-  function animateLobster(lobster: HTMLElement) {
+  function animateLobster(lobster: HTMLElement, isSick: boolean) {
+    if (isSick) {
+      // 罢工/生病的龙虾不移动，只偶尔闪烁状态气泡
+      const actionEl = lobster.querySelector('.lobster-action');
+      setInterval(() => {
+        if (actionEl && Math.random() > 0.3) {
+           actionEl.classList.add('show');
+           setTimeout(() => { actionEl.classList.remove('show'); }, 3000);
+        }
+      }, 5000 + Math.random() * 5000);
+      return; 
+    }
+
     const move = () => {
       // 跑到建筑附近，扩大活动范围，避免挤在左侧
       const newX = 5 + Math.random() * 85; 
