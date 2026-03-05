@@ -228,12 +228,17 @@ const achievements = [
               }
 
               // --- Banner Hero Stats Logic ---
-              const startDate = new Date('2024-01-01');
-              const daysPassed = Math.max(47, Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)));
+              // 以 2026年3月5日 为基准日（Day 44）
+              const baseDate = new Date('2026-03-05T00:00:00+08:00');
+              const extraDays = Math.max(0, Math.floor((today.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24)));
+              const daysPassed = 44 + extraDays;
               
-              const heroDailyRevenue = Math.floor(2200 + random(seed + 99) * 1200);
-              const heroTotalRevenue = daysPassed * 2400 + Math.floor(random(seed + 100) * 10000);
-              const heroLobsters = Math.floor(18 + random(seed + 101) * 12);
+              // 基础总收入锁定在 13w 左右 (基准日当天约 131,245)
+              const heroTotalRevenue = 131245 + Math.floor(random(seed + 100) * 800) + (extraDays * 2847);
+              // 日常收入锁定在 2800 左右波动
+              const heroDailyRevenue = 2847 + Math.floor((random(seed + 99) - 0.5) * 400); 
+              // 在线龙虾数稳定在 23 只附近
+              const heroLobsters = 23 + Math.floor((random(seed + 101) - 0.5) * 4);
               
               const hDaily = document.getElementById('hero-daily-revenue');
               const hTotal = document.getElementById('hero-total-revenue');
